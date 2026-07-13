@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QKommand | The Collection</title>
+    <style>
+        /* ==========================================================================
+           CATEGORY: THEME VARIABLES & CORES
+           ========================================================================== */
+        :root {
+            --bg-deep: #050508;
+            --text-main: #FFFFFF;
+            --text-muted: #FFFFFF;
+            --cyber-blue: #A5C9FF;
+            --cyber-purple: #D1B3FF;
+            --panel-bg: rgba(15, 15, 25, 0.6);
+            --border-glow: rgba(209, 179, 255, 0.2);
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-stack);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ==========================================================================
+           CATEGORY: BACKGROUND CANVAS
+           ========================================================================== */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ==========================================================================
+           CATEGORY: NAVIGATION HEADER
+           ========================================================================== */
+        header {
+            width: 100%;
+            max-width: 600px;
+            position: sticky;
+            top: 0;
+            background: var(--bg-deep); 
+            z-index: 100;
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid var(--border-glow);
+            transition: max-width 0.3s ease, padding 0.3s ease;
+        }
+
+        .nav-scroll-container {
+            width: 100%;
+            overflow-x: auto;
+            display: flex;
+            scrollbar-width: none; 
+        }
+
+        .nav-scroll-container::-webkit-scrollbar {
+            display: none; 
+        }
+
+        .nav-track {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        @keyframes tabPulse {
+            0% { border-color: var(--border-glow); box-shadow: 0 0 2px rgba(209, 179, 255, 0.1); }
+            50% { border-color: rgba(209, 179, 255, 0.5); box-shadow: 0 0 8px rgba(209, 179, 255, 0.3); }
+            100% { border-color: var(--border-glow); box-shadow: 0 0 2px rgba(209, 179, 255, 0.1); }
+        }
+
+        .nav-link {
+            flex: 1 1 auto;
+            max-width: calc(50% - 0.25rem);
+            min-width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0.5rem;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-glow);
+            color: #FFFFFF;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: background 0.3s ease, color 0.3s ease;
+            animation: tabPulse 3s infinite ease-in-out;
+        }
+
+        .nav-link:hover {
+            border-color: var(--cyber-purple);
+            color: var(--cyber-blue);
+            background: rgba(209, 179, 255, 0.1);
+        }
+
+        /* ==========================================================================
+           CATEGORY: PORTAL LAYOUT WRAPPER
+           ========================================================================== */
+        .portal-wrapper {
+            width: 100%;
+            max-width: 600px;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+            transition: max-width 0.3s ease, padding 0.3s ease;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            color: var(--text-main);
+        }
+
+        /* ==========================================================================
+           CATEGORY: COLLECTION GRID GRAPHICS
+           ========================================================================== */
+        .collection-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .book-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-glow);
+            padding: 2rem;
+            border-radius: 4px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.4s ease, transform 0.4s ease;
+        }
+
+        .book-card:hover {
+            border-color: rgba(165, 201, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .book-meta {
+            margin-bottom: 1.5rem;
+        }
+
+        .book-tag {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--cyber-purple);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .book-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+        }
+
+        .book-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .btn-action {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 0.75rem;
+            background: transparent;
+            border: 1px solid var(--cyber-blue);
+            color: var(--cyber-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-action:hover {
+            background: var(--cyber-blue);
+            color: var(--bg-deep);
+        }
+
+        /* ==========================================================================
+           CATEGORY: TERMINAL FOOTER
+           ========================================================================== */
+        footer {
+            width: 100%;
+            padding: 2rem 1rem;
+            text-align: center;
+            background: linear-gradient(to top, var(--bg-deep) 40%, transparent);
+            margin-top: auto;
+        }
+
+        .footer-link {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #FFFFFF;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--cyber-blue);
+        }
+
+        /* ==========================================================================
+           CATEGORY: DESKTOP DISPLAY ADAPTATIONS
+           ========================================================================== */
+        @media (min-width: 768px) {
+            header {
+                max-width: 1000px;
+                padding: 2rem;
+            }
+
+            .portal-wrapper {
+                max-width: 1000px;
+                padding: 3rem 2rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+                margin-bottom: 3.5rem;
+            }
+
+            .collection-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .nav-link {
+                max-width: none;
+                font-size: 0.85rem;
+            }
+
+            .book-title {
+                font-size: 1.4rem;
+            }
+
+            .book-description {
+                font-size: 1.05rem;
+            }
+
+            .btn-action {
+                font-size: 0.85rem;
+            }
+
+            .footer-link {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="starfield"></canvas>
+
+    <header>
+        <div class="nav-scroll-container">
+            <div class="nav-track">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../mission/index.html" class="nav-link">My Mission</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="portal-wrapper">
+
+        <h1 class="page-title">The Collection</h1>
+
+        <div class="collection-grid">
+            <!-- BOOK CARD: ORDO MINDSET -->
+            <div class="book-card" id="ordo-book">
+                <div class="book-meta">
+                    <span class="book-tag">[ Available Now ]</span>
+                    <h2 class="book-title">The Ordo Mindset</h2>
+                    <p class="book-description">A straightforward field guide built around getting out of your own head and straight into execution. No fluffy theories or standard self-help hacks—just real strategies on how to set up a baseline daily rhythm that forces momentum to take care of itself.</p>
+                </div>
+                <a href="#" class="btn-action">Read the Guide</a>
+            </div>
+
+            <!-- BOOK CARD: BLUEPRINT MANIFESTO -->
+            <div class="book-card" id="blueprint-book">
+                <div class="book-meta">
+                    <span class="book-tag">[ Upcoming Release ]</span>
+                    <h2 class="book-title">The Blueprint Manifesto</h2>
+                    <p class="book-description">My primary written layout targeting systematic narrative design, tactical creative execution, and how we map functional communities. This covers the foundational baseline values needed to secure sustainable, real-world coexistence.</p>
+                </div>
+                <a href="#" class="btn-action">Join Waitlist</a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <a href="https://vng-org.github.io/vcs/#home" target="_blank" class="footer-link">Powered by Vanguard Citizen Services</a>
+    </footer>
+
+    <script src="../starfield.js"></script>
+</body>
+</html>
