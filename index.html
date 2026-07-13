@@ -205,15 +205,12 @@
         }
 
         .feed-panel {
-            display: block;
-            text-decoration: none;
             background: var(--panel-bg);
             border: 1px solid var(--border-glow);
             padding: 1.5rem;
             border-radius: 4px;
             backdrop-filter: blur(4px);
             transition: border-color 0.4s ease, transform 0.4s ease;
-            cursor: pointer;
         }
 
         .feed-panel:hover {
@@ -227,12 +224,35 @@
             letter-spacing: 0.02em;
             margin-bottom: 0.75rem;
             color: var(--text-main);
+            text-align: center;
         }
 
         .panel-body {
             font-size: 0.9rem;
             color: var(--text-muted);
             line-height: 1.5;
+            margin-bottom: 1.25rem;
+        }
+
+        /* CATEGORY: BUTTONS & INTERACTION ELEMENTS */
+        .btn-cyber {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid var(--cyber-blue);
+            color: var(--cyber-blue);
+            padding: 0.6rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .btn-cyber:hover {
+            background: var(--cyber-blue);
+            color: var(--bg-deep);
         }
 
         /* CATEGORY: TERMINAL FOOTER */
@@ -337,10 +357,13 @@
 
         <!-- CATEGORY: MISSION & CORE FEED PANELS -->
         <div class="panel-stack">
-            <a href="https://vng-org.github.io/vcs/ordo/index.html" class="feed-panel" id="ordo-mindset">
+            <article class="feed-panel" id="ordo-mindset">
                 <h2 class="panel-title">The Ordo Mindset</h2>
-                <p class="panel-body">Motivation isn't magic—it's just routine doing the heavy lifting. Stop stressing over the massive finish line. Just pick the single next step right in front of you, lock in, and execute. Once you build the rhythm, momentum takes care of itself.</p>
-            </a>
+                <p class="panel-body">Forget waiting around for a magic spark of motivation. Building momentum is just like rolling a snowball down a hill—you just have to pack together that first handful and get it moving. Stop worrying about the whole mountain ahead. Just lock into the next small step right in front of your face. Once you find that steady rhythm, the routine starts doing all the heavy lifting for you.</p>
+                <div style="text-align: center;">
+                    <a href="https://vng-org.github.io/vcs/ordo/index.html" class="btn-cyber">View Collection</a>
+                </div>
+            </article>
         </div>
 
     </main>
