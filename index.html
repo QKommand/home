@@ -66,6 +66,7 @@
             z-index: 100;
             padding: 1.5rem 1rem;
             border-bottom: 1px solid var(--border-glow);
+            transition: max-width 0.3s ease, padding 0.3s ease;
         }
 
         .nav-scroll-container {
@@ -129,6 +130,7 @@
             flex-direction: column;
             align-items: center;
             flex-grow: 1;
+            transition: max-width 0.3s ease, padding 0.3s ease;
         }
 
         /* ==========================================================================
@@ -229,15 +231,6 @@
             transform: translateY(-2px);
         }
 
-        .panel-tag {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--cyber-purple);
-            margin-bottom: 0.5rem;
-            display: inline-block;
-        }
-
         .panel-title {
             font-size: 1.1rem;
             font-weight: 500;
@@ -276,8 +269,27 @@
             color: var(--cyber-blue);
         }
 
+        /* ==========================================================================
+           CATEGORY: DESKTOP DISPLAY ADAPTATIONS
+           ========================================================================== */
         @media (min-width: 768px) {
-            .panel-stack { gap: 1.5rem; }
+            header {
+                max-width: 1000px;
+                padding: 2rem;
+            }
+
+            .portal-wrapper {
+                max-width: 1000px;
+                padding: 3rem 2rem;
+            }
+
+            .nav-link {
+                max-width: none;
+            }
+
+            .panel-stack {
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -322,9 +334,8 @@
 
         <div class="panel-stack">
             <article class="feed-panel" id="ordo-mindset">
-                <span class="panel-tag">[The Daily Drive]</span>
                 <h2 class="panel-title">The Ordo Mindset</h2>
-                <p class="panel-body">Look, getting things done isn't about waiting around for some magical wave of motivation to hit you out of nowhere. It’s way simpler than that—it’s just about setting up a basic rhythm that does the heavy lifting for you. If you're trying to reach a goal, stop stressing over the massive finish line and just lock your eyes on the next direct step right in front of your face. Build the routine, protect your daily energy, and the momentum will look after itself. Let's keep it clean and just execute.</p>
+                <p class="panel-body">Motivation isn't magic—it's just routine doing the heavy lifting. Stop stressing over the massive finish line. Just pick the single next step right in front of you, lock in, and execute. Once you build the rhythm, momentum takes care of itself.</p>
             </article>
         </div>
 
