@@ -66,6 +66,7 @@
             z-index: 100;
             padding: 1.5rem 1rem;
             border-bottom: 1px solid var(--border-glow);
+            transition: max-width 0.3s ease, padding 0.3s ease;
         }
 
         .nav-scroll-container {
@@ -73,6 +74,7 @@
             overflow-x: auto;
             display: flex;
             scrollbar-width: none; 
+            justify-content: center;
         }
 
         .nav-scroll-container::-webkit-scrollbar {
@@ -83,6 +85,7 @@
             display: flex;
             gap: 0.5rem;
             width: 100%;
+            justify-content: center;
         }
 
         @keyframes tabPulse {
@@ -92,13 +95,17 @@
         }
 
         .nav-link {
-            flex: 0 0 calc(25% - 0.375rem);
+            flex: 0 1 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             padding: 0.5rem;
             background: var(--panel-bg);
             border: 1px solid var(--border-glow);
             color: #FFFFFF;
             font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             text-decoration: none;
@@ -123,6 +130,7 @@
             flex-direction: column;
             align-items: center;
             flex-grow: 1;
+            transition: max-width 0.3s ease, padding 0.3s ease;
         }
 
         /* ==========================================================================
@@ -150,36 +158,18 @@
             transform: translateY(-2px);
         }
 
-        .panel-tag {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--cyber-purple);
-            margin-bottom: 0.75rem;
-            display: inline-block;
-        }
-
         .panel-title {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 500;
             letter-spacing: 0.02em;
             margin-bottom: 1rem;
             color: var(--text-main);
-            text-transform: uppercase;
         }
 
         .panel-body {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        .panel-body p {
-            margin-bottom: 1.25rem;
-        }
-
-        .panel-body p:last-child {
-            margin-bottom: 0;
+            line-height: 1.6;
         }
 
         /* ==========================================================================
@@ -206,8 +196,39 @@
             color: var(--cyber-blue);
         }
 
+        /* ==========================================================================
+           CATEGORY: DESKTOP DISPLAY ADAPTATIONS
+           ========================================================================== */
         @media (min-width: 768px) {
-            .panel-stack { gap: 1.5rem; }
+            header {
+                max-width: 1000px;
+                padding: 2rem;
+            }
+
+            .portal-wrapper {
+                max-width: 1000px;
+                padding: 3rem 2rem;
+            }
+
+            .nav-link {
+                font-size: 0.85rem;
+            }
+
+            .panel-title {
+                font-size: 1.3rem;
+            }
+
+            .panel-body {
+                font-size: 1.05rem;
+            }
+
+            .footer-link {
+                font-size: 0.85rem;
+            }
+
+            .panel-stack {
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -219,9 +240,6 @@
         <div class="nav-scroll-container">
             <div class="nav-track">
                 <a href="../index.html" class="nav-link">Home</a>
-                <a href="#top" class="nav-link">My Mission</a>
-                <a href="../index.html#archive" class="nav-link">Archive</a>
-                <a href="../index.html#logs" class="nav-link">Logs</a>
             </div>
         </div>
     </header>
@@ -229,13 +247,11 @@
     <main class="portal-wrapper">
 
         <div class="panel-stack">
-            <!-- MISSION OBJECTIVE BLOCK -->
             <article class="feed-panel">
-                <span class="panel-tag">[Core Directive]</span>
-                <h2 class="panel-title">The Operational Focus</h2>
+                <h2 class="panel-title">The Mission</h2>
                 <div class="panel-body">
-                    <p>QKommand serves as the unfiltered sandbox for real-time creative telemetry. While systemic frameworks build the baseline, true innovation happens at the intersection of cultural noise, structural narrative design, and physical rhythm.</p>
-                    <p>The mission here is simple: dissect human coordination issues, master the medium of acoustic and digital alignment through sonic labs, and decode foundational principles of positive coexistence. Every dispatch, mix, and perspective cataloged on this platform acts as open-source frequency tracking toward that definitive future.</p>
+                    <p>At the end of the day, I’m just trying to make sense of how we all connect. For me, that looks like exploring human narratives and getting real about the actual issues we face out there every single day.</p>
+                    <p>I want to look completely past the surface noise and decode the foundational values of positive coexistence. It’s about figuring out what truly helps us move forward together, building things that back that up, and tracking that baseline frequency. That's what I strive for here.</p>
                 </div>
             </article>
         </div>
@@ -246,7 +262,6 @@
         <a href="https://vng-org.github.io/vcs/#home" target="_blank" class="footer-link">Powered by Vanguard Citizen Services</a>
     </footer>
 
-    <!-- SHARED BACKEND ENGINE -->
     <script src="../starfield.js"></script>
 </body>
 </html>
