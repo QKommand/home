@@ -11,7 +11,7 @@
         :root {
             --bg-deep: #050508;
             --text-main: #FFFFFF;
-            --text-muted: #FFFFFF; /* Changed grey to white */
+            --text-muted: #FFFFFF;
             --cyber-blue: #A5C9FF;
             --cyber-purple: #D1B3FF;
             --panel-bg: rgba(15, 15, 25, 0.6);
@@ -23,6 +23,10 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -51,16 +55,17 @@
         }
 
         /* ==========================================================================
-           CATEGORY: NAVIGATION & PULSE ANIMATION
+           CATEGORY: NAVIGATION HEADER
            ========================================================================== */
         header {
             width: 100%;
             max-width: 600px;
             position: sticky;
             top: 0;
-            background: linear-gradient(to bottom, var(--bg-deep) 70%, transparent);
+            background: var(--bg-deep); 
             z-index: 100;
             padding: 1.5rem 1rem;
+            border-bottom: 1px solid var(--border-glow);
         }
 
         .nav-scroll-container {
@@ -92,7 +97,7 @@
             padding: 0.5rem;
             background: var(--panel-bg);
             border: 1px solid var(--border-glow);
-            color: #FFFFFF; /* Changed lettering to white */
+            color: #FFFFFF;
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -142,10 +147,18 @@
            ========================================================================== */
         .glyph-container {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             margin-bottom: 3rem;
             justify-content: center;
+            align-items: flex-start;
+        }
+
+        .glyph-item {
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            width: 90px;
+            text-align: center;
         }
 
         .glyph-link {
@@ -172,6 +185,17 @@
             width: 20px;
             height: 20px;
             fill: currentColor;
+        }
+
+        .glyph-label {
+            margin-top: 0.6rem;
+            font-size: 0.7rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            word-wrap: break-word;
+            white-space: normal;
+            width: 100%;
         }
 
         /* ==========================================================================
@@ -218,7 +242,7 @@
 
         .panel-body {
             font-size: 0.9rem;
-            color: var(--text-muted); /* Resolves to pure white */
+            color: var(--text-muted);
             line-height: 1.5;
         }
 
@@ -237,7 +261,7 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: #FFFFFF; /* Changed link text to white */
+            color: #FFFFFF;
             text-decoration: underline;
             transition: color 0.3s ease;
         }
@@ -247,24 +271,22 @@
         }
 
         @media (min-width: 768px) {
-            header { position: relative; background: transparent; }
             .panel-stack { gap: 1.5rem; }
         }
     </style>
 </head>
-<body>
+<body id="top">
 
     <canvas id="starfield"></canvas>
 
     <header>
         <div class="nav-scroll-container">
             <div class="nav-track">
-                <a href="#book" class="nav-link">The Book</a>
-                <a href="#sonic" class="nav-link">Sonic Labs</a>
-                <a href="#signals" class="nav-link">Signals</a>
-                <a href="#vault" class="nav-link">Vault</a>
-                <a href="#extra1" class="nav-link">Archive</a>
-                <a href="#extra2" class="nav-link">Logs</a>
+                <a href="#top" class="nav-link">Home</a>
+                <a href="mission/index.html" class="nav-link">My Mission</a>
+                <a href="#archive" class="nav-link">Archive</a>
+                <a href="#logs" class="nav-link">Logs</a>
+                <!-- Future tabs can be explicitly appended directly here -->
             </div>
         </div>
     </header>
@@ -276,37 +298,31 @@
         </div>
 
         <div class="glyph-container">
-            <!-- APPLE MUSIC -->
-            <a href="https://music.apple.com/profile/cmdrq_music" target="_blank" class="glyph-link" aria-label="Apple Music Profile">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h6V3h-6z"/>
-                </svg>
-            </a>
-            <!-- SUBSTACK -->
-            <a href="https://open.substack.com/pub/commandrq" target="_blank" class="glyph-link" aria-label="Substack Profile">
-                <svg viewBox="0 0 24 24">
-                    <path d="M22.569 4.774H1.43V2.25h21.139v2.524zm0 4.618H1.43v6.784h21.139V9.392zM1.43 18.53h21.139v3.22H1.43v-3.22z"/>
-                </svg>
-            </a>
+            <div class="glyph-item">
+                <a href="https://music.apple.com/profile/cmdrq_music" target="_blank" class="glyph-link" aria-label="Apple Music Profile">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h6V3h-6z"/>
+                    </svg>
+                </a>
+                <div class="glyph-label">Apple Music</div>
+            </div>
+
+            <div class="glyph-item">
+                <a href="https://open.substack.com/pub/commandrq" target="_blank" class="glyph-link" aria-label="Substack Profile">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M22.569 4.774H1.43V2.25h21.139v2.524zm0 4.618H1.43v6.784h21.139V9.392zM1.43 18.53h21.139v3.22H1.43v-3.22z"/>
+                    </svg>
+                </a>
+                <div class="glyph-label">Substack Dispatch</div>
+            </div>
         </div>
 
         <div class="panel-stack">
-            <article class="feed-panel" id="book">
-                <span class="panel-tag">[Upcoming Release]</span>
+            <!-- HEADLINE MODULE (Add or remove distinct article elements below as needed) -->
+            <article class="feed-panel" id="manifesto">
+                <span class="panel-tag">[Current Transmission]</span>
                 <h2 class="panel-title">The Blueprint Manifesto</h2>
                 <p class="panel-body">My primary thesis on structural design, creative warfare, and building digital sanctuaries. Coming to shelves soon.</p>
-            </article>
-
-            <article class="feed-panel" id="sonic">
-                <span class="panel-tag">[Sonic Lab Transmissions]</span>
-                <h2 class="panel-title">Midnight Mashups // Vol 04</h2>
-                <p class="panel-body">A blend of classic breaks, deep bass lines, and spoken word narrative logic. Stream parameters configured inside the Apple Music link above.</p>
-            </article>
-
-            <article class="feed-panel" id="signals">
-                <span class="panel-tag">[Digital Signal]</span>
-                <h2 class="panel-title">The Substack Frequency</h2>
-                <p class="panel-body">Unfiltered commentary regarding social friction, systemic engineering, and human alignment. Updated weekly.</p>
             </article>
         </div>
 
