@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- CATEGORY: METADATA & GRAPHICS INTERFACE -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QKommand</title>
     <style>
-        /* ==========================================================================
-           CATEGORY: THEME VARIABLES & CORES
-           ========================================================================== */
+        /* CATEGORY: THEME VARIABLES & CORES */
         :root {
             --bg-deep: #050508;
             --text-main: #FFFFFF;
@@ -41,9 +40,7 @@
             align-items: center;
         }
 
-        /* ==========================================================================
-           CATEGORY: BACKGROUND CANVAS
-           ========================================================================== */
+        /* CATEGORY: BACKGROUND CANVAS */
         #starfield {
             position: fixed;
             top: 0;
@@ -54,9 +51,7 @@
             pointer-events: none;
         }
 
-        /* ==========================================================================
-           CATEGORY: NAVIGATION HEADER
-           ========================================================================== */
+        /* CATEGORY: NAVIGATION HEADER */
         header {
             width: 100%;
             max-width: 600px;
@@ -119,9 +114,7 @@
             background: rgba(209, 179, 255, 0.1);
         }
 
-        /* ==========================================================================
-           CATEGORY: PORTAL LAYOUT WRAPPER
-           ========================================================================== */
+        /* CATEGORY: PORTAL LAYOUT WRAPPER */
         .portal-wrapper {
             width: 100%;
             max-width: 600px;
@@ -133,9 +126,7 @@
             transition: max-width 0.3s ease, padding 0.3s ease;
         }
 
-        /* ==========================================================================
-           CATEGORY: IDENTITY & AVATAR
-           ========================================================================== */
+        /* CATEGORY: IDENTITY & AVATAR */
         .avatar-container {
             margin-bottom: 1.5rem;
             position: relative;
@@ -150,9 +141,7 @@
             box-shadow: 0 0 15px var(--border-glow);
         }
 
-        /* ==========================================================================
-           CATEGORY: GLYPH NETWORK LINKS
-           ========================================================================== */
+        /* CATEGORY: GLYPH NETWORK LINKS */
         .glyph-container {
             display: flex;
             gap: 2rem;
@@ -206,9 +195,7 @@
             width: 100%;
         }
 
-        /* ==========================================================================
-           CATEGORY: FEED PANELS BLOCK
-           ========================================================================== */
+        /* CATEGORY: FEED PANELS BLOCK */
         .panel-stack {
             width: 100%;
             display: flex;
@@ -218,12 +205,15 @@
         }
 
         .feed-panel {
+            display: block;
+            text-decoration: none;
             background: var(--panel-bg);
             border: 1px solid var(--border-glow);
             padding: 1.5rem;
             border-radius: 4px;
             backdrop-filter: blur(4px);
             transition: border-color 0.4s ease, transform 0.4s ease;
+            cursor: pointer;
         }
 
         .feed-panel:hover {
@@ -245,9 +235,7 @@
             line-height: 1.5;
         }
 
-        /* ==========================================================================
-           CATEGORY: TERMINAL FOOTER
-           ========================================================================== */
+        /* CATEGORY: TERMINAL FOOTER */
         footer {
             width: 100%;
             padding: 2rem 1rem;
@@ -269,9 +257,7 @@
             color: var(--cyber-blue);
         }
 
-               /* ==========================================================================
-           CATEGORY: DESKTOP DISPLAY ADAPTATIONS
-           ========================================================================== */
+        /* CATEGORY: DESKTOP DISPLAY ADAPTATIONS */
         @media (min-width: 768px) {
             header {
                 max-width: 1000px;
@@ -349,11 +335,12 @@
             </div>
         </div>
 
+        <!-- CATEGORY: MISSION & CORE FEED PANELS -->
         <div class="panel-stack">
-            <article class="feed-panel" id="ordo-mindset">
+            <a href="https://vng-org.github.io/vcs/ordo/index.html" class="feed-panel" id="ordo-mindset">
                 <h2 class="panel-title">The Ordo Mindset</h2>
                 <p class="panel-body">Motivation isn't magic—it's just routine doing the heavy lifting. Stop stressing over the massive finish line. Just pick the single next step right in front of you, lock in, and execute. Once you build the rhythm, momentum takes care of itself.</p>
-            </article>
+            </a>
         </div>
 
     </main>
