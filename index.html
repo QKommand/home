@@ -4,14 +4,258 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QKommand</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ==========================================================================
+           CATEGORY: THEME VARIABLES & CORES
+           ========================================================================== */
+        :root {
+            --bg-deep: #050508;
+            --text-main: #FFFFFF;
+            --text-muted: #FFFFFF; /* Changed grey to white */
+            --cyber-blue: #A5C9FF;
+            --cyber-purple: #D1B3FF;
+            --panel-bg: rgba(15, 15, 25, 0.6);
+            --border-glow: rgba(209, 179, 255, 0.2);
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-stack);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ==========================================================================
+           CATEGORY: BACKGROUND CANVAS
+           ========================================================================== */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ==========================================================================
+           CATEGORY: NAVIGATION & PULSE ANIMATION
+           ========================================================================== */
+        header {
+            width: 100%;
+            max-width: 600px;
+            position: sticky;
+            top: 0;
+            background: linear-gradient(to bottom, var(--bg-deep) 70%, transparent);
+            z-index: 100;
+            padding: 1.5rem 1rem;
+        }
+
+        .nav-scroll-container {
+            width: 100%;
+            overflow-x: auto;
+            display: flex;
+            scrollbar-width: none; 
+        }
+
+        .nav-scroll-container::-webkit-scrollbar {
+            display: none; 
+        }
+
+        .nav-track {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        @keyframes tabPulse {
+            0% { border-color: var(--border-glow); box-shadow: 0 0 2px rgba(209, 179, 255, 0.1); }
+            50% { border-color: rgba(209, 179, 255, 0.5); box-shadow: 0 0 8px rgba(209, 179, 255, 0.3); }
+            100% { border-color: var(--border-glow); box-shadow: 0 0 2px rgba(209, 179, 255, 0.1); }
+        }
+
+        .nav-link {
+            flex: 0 0 calc(25% - 0.375rem);
+            text-align: center;
+            padding: 0.5rem;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-glow);
+            color: #FFFFFF; /* Changed lettering to white */
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: background 0.3s ease, color 0.3s ease;
+            animation: tabPulse 3s infinite ease-in-out;
+        }
+
+        .nav-link:hover {
+            border-color: var(--cyber-purple);
+            color: var(--cyber-blue);
+            background: rgba(209, 179, 255, 0.1);
+        }
+
+        /* ==========================================================================
+           CATEGORY: PORTAL LAYOUT WRAPPER
+           ========================================================================== */
+        .portal-wrapper {
+            width: 100%;
+            max-width: 600px;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        /* ==========================================================================
+           CATEGORY: IDENTITY & AVATAR
+           ========================================================================== */
+        .avatar-container {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .avatar-image {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--cyber-blue);
+            box-shadow: 0 0 15px var(--border-glow);
+        }
+
+        /* ==========================================================================
+           CATEGORY: GLYPH NETWORK LINKS
+           ========================================================================== */
+        .glyph-container {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .glyph-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 50%;
+            color: var(--cyber-purple);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glyph-link:hover {
+            color: var(--cyber-blue);
+            border-color: var(--cyber-blue);
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(165, 201, 255, 0.2);
+        }
+
+        .glyph-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* ==========================================================================
+           CATEGORY: FEED PANELS BLOCK
+           ========================================================================== */
+        .panel-stack {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-bottom: 4rem;
+        }
+
+        .feed-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-glow);
+            padding: 1.5rem;
+            border-radius: 4px;
+            backdrop-filter: blur(4px);
+            transition: border-color 0.4s ease, transform 0.4s ease;
+        }
+
+        .feed-panel:hover {
+            border-color: rgba(165, 201, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .panel-tag {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--cyber-purple);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .panel-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+        }
+
+        .panel-body {
+            font-size: 0.9rem;
+            color: var(--text-muted); /* Resolves to pure white */
+            line-height: 1.5;
+        }
+
+        /* ==========================================================================
+           CATEGORY: TERMINAL FOOTER
+           ========================================================================== */
+        footer {
+            width: 100%;
+            padding: 2rem 1rem;
+            text-align: center;
+            background: linear-gradient(to top, var(--bg-deep) 40%, transparent);
+            margin-top: auto;
+        }
+
+        .footer-link {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #FFFFFF; /* Changed link text to white */
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--cyber-blue);
+        }
+
+        @media (min-width: 768px) {
+            header { position: relative; background: transparent; }
+            .panel-stack { gap: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- BACKGROUND CANVAS -->
     <canvas id="starfield"></canvas>
 
-    <!-- NAVIGATION HEADER -->
     <header>
         <div class="nav-scroll-container">
             <div class="nav-track">
@@ -25,21 +269,20 @@
         </div>
     </header>
 
-    <!-- PORTAL WRAPPER -->
     <main class="portal-wrapper">
 
-        <!-- IDENTITY SECTION -->
         <div class="avatar-container">
-            <img src="headshot.jpg" alt="CommandRQ Headshot" class="avatar-image">
+            <img src="images/headshot.jpg" alt="CommandRQ Headshot" class="avatar-image">
         </div>
 
-        <!-- GLYPH LAYERS -->
         <div class="glyph-container">
+            <!-- APPLE MUSIC -->
             <a href="https://music.apple.com/profile/cmdrq_music" target="_blank" class="glyph-link" aria-label="Apple Music Profile">
                 <svg viewBox="0 0 24 24">
-                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 13.833V9.25l5-1.167v1.667l-4 .917v5.166c0 .917-.75 1.667-1.667 1.667-.916 0-1.666-.75-1.666-1.667 0-.916.75-1.666 1.666-1.666.417 0 .75.166.917.416V7.083l6-1.416v10.333c0 1.5-1.167 2.5-2.5 2.5-1.417 0-2.5-1.167-2.5-2.5 0-1.417 1.083-2.5 2.5-2.5.417 0 .75.083 1 .25V13.5l-4-.917v2.667c0 .917-.75 1.667-1.667 1.667-.916 0-1.666-.75-1.666-1.667 0-.916.75-1.666 1.666-1.666.417 0 .75.166.917.416z"/>
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h6V3h-6z"/>
                 </svg>
             </a>
+            <!-- SUBSTACK -->
             <a href="https://open.substack.com/pub/commandrq" target="_blank" class="glyph-link" aria-label="Substack Profile">
                 <svg viewBox="0 0 24 24">
                     <path d="M22.569 4.774H1.43V2.25h21.139v2.524zm0 4.618H1.43v6.784h21.139V9.392zM1.43 18.53h21.139v3.22H1.43v-3.22z"/>
@@ -47,7 +290,6 @@
             </a>
         </div>
 
-        <!-- STACK PANELS -->
         <div class="panel-stack">
             <article class="feed-panel" id="book">
                 <span class="panel-tag">[Upcoming Release]</span>
@@ -70,7 +312,6 @@
 
     </main>
 
-    <!-- ANCHOR FOOTER -->
     <footer>
         <a href="https://vng-org.github.io/vcs/#home" target="_blank" class="footer-link">Powered by Vanguard Citizen Services</a>
     </footer>
