@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QKommand</title>
+  
+  <!-- CATEGORY: SYSTEM STYLES -->
+  <style>
+    /* CATEGORY: RESET */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #000000;
+      overflow-x: hidden;
+    }
+
+    /* CATEGORY: STARFIELD */
+    #starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background: #050505;
+      pointer-events: none;
+    }
+
+    /* CATEGORY: TYPOGRAPHY */
+    h1, h2, h3 {
+      font-family: "Arial Black", Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* CATEGORY: HEADER */
+    header {
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .qkommand-title {
+      font-family: "Arial Black", Impact, sans-serif;
+      font-size: 2.8rem;
+      text-align: center;
+      background: linear-gradient(120deg, #ffd700 0%, #ffd700 40%, #ffffff 50%, #ffd700 60%, #ffd700 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gold-sheen 4s infinite linear;
+      margin-bottom: 5px;
+    }
+
+    .system-status {
+      font-size: 0.85rem;
+      font-family: monospace;
+      color: #00ff66;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #00ff66;
+      border-radius: 50%;
+      animation: pulse-indicator 2.5s infinite ease-in-out;
+    }
+
+    /* CATEGORY: ANIMATIONS */
+    @keyframes gold-sheen {
+      0% { background-position: 200% center; }
+      20% { background-position: -200% center; }
+      100% { background-position: -200% center; }
+    }
+
+    @keyframes pulse-indicator {
+      0% { opacity: 0.3; }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
+
+    @keyframes button-breathe {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes glimmer {
+      0%, 100% { opacity: 0.7; text-shadow: none; }
+      50% { opacity: 1; text-shadow: 0 0 12px rgba(255, 255, 255, 0.9); }
+    }
+
+    /* CATEGORY: GRID */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      flex-grow: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* CATEGORY: TILES */
+    .tile {
+      background-color: rgba(17, 17, 19, 0.85);
+      backdrop-filter: blur(4px);
+      border: 1px solid #222225;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .tile:hover {
+      border-color: #ffffff;
+    }
+
+    .tile h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .tile p {
+      color: #d1d1d6;
+      margin-bottom: 24px; /* Reduced vertical gap from 40px to sharpen layout rhythm */
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      leading-relaxed: 1.6;
+    }
+
+    /* CATEGORY: BUTTONS */
+    .action-btn {
+      display: inline-block;
+      text-align: center;
+      background-color: transparent;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      padding: 14px 32px;
+      font-family: monospace;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      align-self: center;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    @media (min-width: 768px) {
+      .action-btn {
+        padding: 18px 48px;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+      }
+    }
+
+    .tile:hover .action-btn {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .priority-tile {
+      border-color: #333338;
+    }
+    
+    .priority-tile .action-btn {
+      background-color: #ffffff;
+      color: #000000;
+      animation: button-breathe 4s infinite ease-in-out;
+    }
+
+    .priority-tile .action-btn:hover {
+      background-color: transparent;
+      color: #ffffff;
+      animation: none;
+    }
+
+    /* CATEGORY: FOOTER */
+    footer {
+      margin-top: 50px;
+      border-top: 1px solid #222225;
+      padding-top: 25px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #ffffff;
+      animation: glimmer 3s infinite ease-in-out;
+    }
+
+    footer a {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CATEGORY: STARFIELD CANVAS -->
+  <canvas id="starfield"></canvas>
+
+  <!-- CATEGORY: HEADER -->
+  <header>
+    <div class="qkommand-title">QKOMMAND</div>
+    <div class="system-status">
+      <div class="status-dot"></div>
+      VanguardOS Online
+    </div>
+  </header>
+
+  <!-- CATEGORY: MAIN GRID -->
+  <main class="workspace-grid" id="tile-container"></main>
+
+  <!-- CATEGORY: FOOTER -->
+  <footer>
+    <p>A Division of <a href="https://vanguardcitizenservices.com" target="_blank">Vanguard Citizen Services</a> | &copy; 2026 All Rights Reserved.</p>
+  </footer>
+
+  <!-- CATEGORY: SCRIPT -->
+  <script>
+    // CATEGORY: CONFIGURATION
+    const tileConfig = [
+      {
+        title: "THE ORDO MINDSET",
+        description: "This isn't a book built for your best days. It’s armor designed specifically for your worst. When your will cracks and everything spins out of control, you hand the controls over to the structure and execute like a robot. Stop guessing what to do next.",
+        buttonText: "Purchase",
+        buttonLink: "https://vcsstore.gumroad.com/l/ordo-mindset?wanted=true",
+        isPriority: "on" 
+      }
+    ];
+
+    // CATEGORY: RENDER
+    const container = document.getElementById('tile-container');
+    
+    tileConfig.forEach(tile => {
+      const priorityClass = tile.isPriority === "on" ? "priority-tile" : "";
+      
+      const tileHTML = `
+        <section class="tile ${priorityClass}">
+          <div>
+            <h2>${tile.title}</h2>
+            <p>${tile.description}</p>
+          </div>
+          <a class="action-btn" href="${tile.buttonLink}" target="_blank" rel="noopener noreferrer">${tile.buttonText}</a>
+        </section>
+      `;
+      
+      container.innerHTML += tileHTML;
+    });
+
+    // CATEGORY: ANIMATION
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    
+    let width, height, stars;
+    const starCount = 150;
+
+    function initStars() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      stars = [];
+      for (let i = 0; i < starCount; i++) {
+        stars.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 1.5,
+          alpha: Math.random(),
+          fadeRate: (Math.random() * 0.02) + 0.005,
+          fadingOut: Math.random() > 0.5
+        });
+      }
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#ffffff';
+      
+      stars.forEach(star => {
+        ctx.globalAlpha = star.alpha;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fill();
+        
+        if (star.fadingOut) {
+          star.alpha -= star.fadeRate;
+          if (star.alpha <= 0.1) star.fadingOut = false;
+        } else {
+          star.alpha += star.fadeRate;
+          if (star.alpha >= 1) star.fadingOut = true;
+        }
+      });
+      
+      requestAnimationFrame(drawStars);
+    }
+
+    initStars();
+    drawStars();
+    window.addEventListener('resize', initStars);
+  </script>
+</body>
+</html>
