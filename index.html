@@ -92,13 +92,19 @@
         }
 
         .nav-link {
-            flex: 0 0 calc(25% - 0.375rem);
+            flex: 1 1 auto;
+            max-width: calc(50% - 0.25rem);
+            min-width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             padding: 0.5rem;
             background: var(--panel-bg);
             border: 1px solid var(--border-glow);
             color: #FFFFFF;
             font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             text-decoration: none;
@@ -284,9 +290,6 @@
             <div class="nav-track">
                 <a href="#top" class="nav-link">Home</a>
                 <a href="mission/index.html" class="nav-link">My Mission</a>
-                <a href="#archive" class="nav-link">Archive</a>
-                <a href="#logs" class="nav-link">Logs</a>
-                <!-- Future tabs can be explicitly appended directly here -->
             </div>
         </div>
     </header>
@@ -313,16 +316,15 @@
                         <path d="M22.569 4.774H1.43V2.25h21.139v2.524zm0 4.618H1.43v6.784h21.139V9.392zM1.43 18.53h21.139v3.22H1.43v-3.22z"/>
                     </svg>
                 </a>
-                <div class="glyph-label">Substack Dispatch</div>
+                <div class="glyph-label">Substack</div>
             </div>
         </div>
 
         <div class="panel-stack">
-            <!-- HEADLINE MODULE (Add or remove distinct article elements below as needed) -->
-            <article class="feed-panel" id="manifesto">
-                <span class="panel-tag">[Current Transmission]</span>
-                <h2 class="panel-title">The Blueprint Manifesto</h2>
-                <p class="panel-body">My primary thesis on structural design, creative warfare, and building digital sanctuaries. Coming to shelves soon.</p>
+            <article class="feed-panel" id="ordo-mindset">
+                <span class="panel-tag">[The Daily Drive]</span>
+                <h2 class="panel-title">The Ordo Mindset</h2>
+                <p class="panel-body">Look, getting things done isn't about waiting around for some magical wave of motivation to hit you out of nowhere. It’s way simpler than that—it’s just about setting up a basic rhythm that does the heavy lifting for you. If you're trying to reach a goal, stop stressing over the massive finish line and just lock your eyes on the next direct step right in front of your face. Build the routine, protect your daily energy, and the momentum will look after itself. Let's keep it clean and just execute.</p>
             </article>
         </div>
 
