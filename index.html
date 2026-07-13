@@ -1,326 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QKommand</title>
-  
-  <!-- CATEGORY: SYSTEM STYLES -->
-  <style>
-    /* CATEGORY: RESET */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.5;
-      padding: 20px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background-color: #000000;
-      overflow-x: hidden;
-    }
-
-    /* CATEGORY: STARFIELD */
-    #starfield {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      background: #050505;
-      pointer-events: none;
-    }
-
-    /* CATEGORY: TYPOGRAPHY */
-    h1, h2, h3 {
-      font-family: "Arial Black", Impact, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* CATEGORY: HEADER */
-    header {
-      padding: 30px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      position: relative;
-    }
-
-    .qkommand-title {
-      font-family: "Arial Black", Impact, sans-serif;
-      font-size: 2.8rem;
-      text-align: center;
-      background: linear-gradient(120deg, #ffd700 0%, #ffd700 40%, #ffffff 50%, #ffd700 60%, #ffd700 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gold-sheen 4s infinite linear;
-      margin-bottom: 5px;
-    }
-
-    .system-status {
-      font-size: 0.85rem;
-      font-family: monospace;
-      color: #00ff66;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      background-color: #00ff66;
-      border-radius: 50%;
-      animation: pulse-indicator 2.5s infinite ease-in-out;
-    }
-
-    /* CATEGORY: ANIMATIONS */
-    @keyframes gold-sheen {
-      0% { background-position: 200% center; }
-      20% { background-position: -200% center; }
-      100% { background-position: -200% center; }
-    }
-
-    @keyframes pulse-indicator {
-      0% { opacity: 0.3; }
-      50% { opacity: 1; }
-      100% { opacity: 0.3; }
-    }
-
-    @keyframes button-breathe {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-      100% { transform: scale(1); }
-    }
-
-    @keyframes glimmer {
-      0%, 100% { opacity: 0.7; text-shadow: none; }
-      50% { opacity: 1; text-shadow: 0 0 12px rgba(255, 255, 255, 0.9); }
-    }
-
-    /* CATEGORY: GRID */
-    .workspace-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      flex-grow: 1;
-      max-width: 800px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    /* CATEGORY: TILES */
-    .tile {
-      background-color: rgba(17, 17, 19, 0.85);
-      backdrop-filter: blur(4px);
-      border: 1px solid #222225;
-      padding: 40px 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      text-align: center;
-      transition: border-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .tile:hover {
-      border-color: #ffffff;
-    }
-
-    .tile h2 {
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-      color: #ffffff;
-    }
-
-    .tile p {
-      color: #d1d1d6;
-      margin-bottom: 24px; /* Reduced vertical gap from 40px to sharpen layout rhythm */
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: 1.15rem;
-      leading-relaxed: 1.6;
-    }
-
-    /* CATEGORY: BUTTONS */
-    .action-btn {
-      display: inline-block;
-      text-align: center;
-      background-color: transparent;
-      border: 1px solid #ffffff;
-      color: #ffffff;
-      padding: 14px 32px;
-      font-family: monospace;
-      font-weight: bold;
-      text-transform: uppercase;
-      cursor: pointer;
-      align-self: center;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    @media (min-width: 768px) {
-      .action-btn {
-        padding: 18px 48px;
-        font-size: 1.1rem;
-        letter-spacing: 1px;
-      }
-    }
-
-    .tile:hover .action-btn {
-      background-color: #ffffff;
-      color: #000000;
-    }
-
-    .priority-tile {
-      border-color: #333338;
-    }
-    
-    .priority-tile .action-btn {
-      background-color: #ffffff;
-      color: #000000;
-      animation: button-breathe 4s infinite ease-in-out;
-    }
-
-    .priority-tile .action-btn:hover {
-      background-color: transparent;
-      color: #ffffff;
-      animation: none;
-    }
-
-    /* CATEGORY: FOOTER */
-    footer {
-      margin-top: 50px;
-      border-top: 1px solid #222225;
-      padding-top: 25px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #ffffff;
-      animation: glimmer 3s infinite ease-in-out;
-    }
-
-    footer a {
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QKommand</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- CATEGORY: STARFIELD CANVAS -->
-  <canvas id="starfield"></canvas>
+    <!-- BACKGROUND CANVAS -->
+    <canvas id="starfield"></canvas>
 
-  <!-- CATEGORY: HEADER -->
-  <header>
-    <div class="qkommand-title">QKOMMAND</div>
-    <div class="system-status">
-      <div class="status-dot"></div>
-      VanguardOS Online
-    </div>
-  </header>
+    <!-- NAVIGATION HEADER -->
+    <header>
+        <div class="nav-scroll-container">
+            <div class="nav-track">
+                <a href="#book" class="nav-link">The Book</a>
+                <a href="#sonic" class="nav-link">Sonic Labs</a>
+                <a href="#signals" class="nav-link">Signals</a>
+                <a href="#vault" class="nav-link">Vault</a>
+                <a href="#extra1" class="nav-link">Archive</a>
+                <a href="#extra2" class="nav-link">Logs</a>
+            </div>
+        </div>
+    </header>
 
-  <!-- CATEGORY: MAIN GRID -->
-  <main class="workspace-grid" id="tile-container"></main>
+    <!-- PORTAL WRAPPER -->
+    <main class="portal-wrapper">
 
-  <!-- CATEGORY: FOOTER -->
-  <footer>
-    <p>A Division of <a href="https://vanguardcitizenservices.com" target="_blank">Vanguard Citizen Services</a> | &copy; 2026 All Rights Reserved.</p>
-  </footer>
+        <!-- IDENTITY SECTION -->
+        <div class="avatar-container">
+            <img src="headshot.jpg" alt="CommandRQ Headshot" class="avatar-image">
+        </div>
 
-  <!-- CATEGORY: SCRIPT -->
-  <script>
-    // CATEGORY: CONFIGURATION
-    const tileConfig = [
-      {
-        title: "THE ORDO MINDSET",
-        description: "This isn't a book built for your best days. It’s armor designed specifically for your worst. When your will cracks and everything spins out of control, you hand the controls over to the structure and execute like a robot. Stop guessing what to do next.",
-        buttonText: "Purchase",
-        buttonLink: "https://vcsstore.gumroad.com/l/ordo-mindset?wanted=true",
-        isPriority: "on" 
-      }
-    ];
+        <!-- GLYPH LAYERS -->
+        <div class="glyph-container">
+            <a href="https://music.apple.com/profile/cmdrq_music" target="_blank" class="glyph-link" aria-label="Apple Music Profile">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 13.833V9.25l5-1.167v1.667l-4 .917v5.166c0 .917-.75 1.667-1.667 1.667-.916 0-1.666-.75-1.666-1.667 0-.916.75-1.666 1.666-1.666.417 0 .75.166.917.416V7.083l6-1.416v10.333c0 1.5-1.167 2.5-2.5 2.5-1.417 0-2.5-1.167-2.5-2.5 0-1.417 1.083-2.5 2.5-2.5.417 0 .75.083 1 .25V13.5l-4-.917v2.667c0 .917-.75 1.667-1.667 1.667-.916 0-1.666-.75-1.666-1.667 0-.916.75-1.666 1.666-1.666.417 0 .75.166.917.416z"/>
+                </svg>
+            </a>
+            <a href="https://open.substack.com/pub/commandrq" target="_blank" class="glyph-link" aria-label="Substack Profile">
+                <svg viewBox="0 0 24 24">
+                    <path d="M22.569 4.774H1.43V2.25h21.139v2.524zm0 4.618H1.43v6.784h21.139V9.392zM1.43 18.53h21.139v3.22H1.43v-3.22z"/>
+                </svg>
+            </a>
+        </div>
 
-    // CATEGORY: RENDER
-    const container = document.getElementById('tile-container');
-    
-    tileConfig.forEach(tile => {
-      const priorityClass = tile.isPriority === "on" ? "priority-tile" : "";
-      
-      const tileHTML = `
-        <section class="tile ${priorityClass}">
-          <div>
-            <h2>${tile.title}</h2>
-            <p>${tile.description}</p>
-          </div>
-          <a class="action-btn" href="${tile.buttonLink}" target="_blank" rel="noopener noreferrer">${tile.buttonText}</a>
-        </section>
-      `;
-      
-      container.innerHTML += tileHTML;
-    });
+        <!-- STACK PANELS -->
+        <div class="panel-stack">
+            <article class="feed-panel" id="book">
+                <span class="panel-tag">[Upcoming Release]</span>
+                <h2 class="panel-title">The Blueprint Manifesto</h2>
+                <p class="panel-body">My primary thesis on structural design, creative warfare, and building digital sanctuaries. Coming to shelves soon.</p>
+            </article>
 
-    // CATEGORY: ANIMATION
-    const canvas = document.getElementById('starfield');
-    const ctx = canvas.getContext('2d');
-    
-    let width, height, stars;
-    const starCount = 150;
+            <article class="feed-panel" id="sonic">
+                <span class="panel-tag">[Sonic Lab Transmissions]</span>
+                <h2 class="panel-title">Midnight Mashups // Vol 04</h2>
+                <p class="panel-body">A blend of classic breaks, deep bass lines, and spoken word narrative logic. Stream parameters configured inside the Apple Music link above.</p>
+            </article>
 
-    function initStars() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      stars = [];
-      for (let i = 0; i < starCount; i++) {
-        stars.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          radius: Math.random() * 1.5,
-          alpha: Math.random(),
-          fadeRate: (Math.random() * 0.02) + 0.005,
-          fadingOut: Math.random() > 0.5
-        });
-      }
-    }
+            <article class="feed-panel" id="signals">
+                <span class="panel-tag">[Digital Signal]</span>
+                <h2 class="panel-title">The Substack Frequency</h2>
+                <p class="panel-body">Unfiltered commentary regarding social friction, systemic engineering, and human alignment. Updated weekly.</p>
+            </article>
+        </div>
 
-    function drawStars() {
-      ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = '#ffffff';
-      
-      stars.forEach(star => {
-        ctx.globalAlpha = star.alpha;
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fill();
-        
-        if (star.fadingOut) {
-          star.alpha -= star.fadeRate;
-          if (star.alpha <= 0.1) star.fadingOut = false;
-        } else {
-          star.alpha += star.fadeRate;
-          if (star.alpha >= 1) star.fadingOut = true;
-        }
-      });
-      
-      requestAnimationFrame(drawStars);
-    }
+    </main>
 
-    initStars();
-    drawStars();
-    window.addEventListener('resize', initStars);
-  </script>
+    <!-- ANCHOR FOOTER -->
+    <footer>
+        <a href="https://vng-org.github.io/vcs/#home" target="_blank" class="footer-link">Powered by Vanguard Citizen Services</a>
+    </footer>
+
+    <script src="starfield.js"></script>
 </body>
 </html>
