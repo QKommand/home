@@ -163,17 +163,19 @@
         /* CATEGORY: GLYPH NETWORK LINKS */
         .glyph-container {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             margin-bottom: 3rem;
             justify-content: center;
             align-items: flex-start;
+            flex-wrap: wrap;
+            width: 100%;
         }
 
         .glyph-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 90px;
+            width: 100px;
             text-align: center;
         }
 
@@ -205,7 +207,7 @@
 
         .glyph-label {
             margin-top: 0.6rem;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-main);
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -230,6 +232,7 @@
             border-radius: 4px;
             backdrop-filter: blur(4px);
             transition: border-color 0.4s ease, transform 0.4s ease;
+            text-align: center;
         }
 
         .feed-panel:hover {
@@ -251,6 +254,7 @@
             color: var(--text-muted);
             line-height: 1.5;
             margin-bottom: 1.25rem;
+            text-align: center;
         }
 
         /* CATEGORY: BUTTONS & INTERACTION ELEMENTS */
@@ -319,7 +323,7 @@
             }
 
             .glyph-label {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
 
             .panel-title {
@@ -361,7 +365,10 @@
             <img src="images/headshot.jpg" alt="CommandRQ Headshot" class="avatar-image">
         </div>
 
+        <!-- CATEGORY: BRAND GLYPH LINKS CONTAINER -->
         <div class="glyph-container">
+            
+            <!-- GLYPH UNIT: APPLE MUSIC PLAYLISTS -->
             <div class="glyph-item">
                 <a href="https://music.apple.com/profile/cmdrq_music" target="_blank" class="glyph-link" aria-label="Apple Music Profile">
                     <svg viewBox="0 0 24 24">
@@ -371,15 +378,49 @@
                 <div class="glyph-label">My Music Playlists</div>
             </div>
 
+            <!-- GLYPH UNIT: TIKTOK ORDO MINDSET -->
+            <div class="glyph-item">
+                <a href="#" onclick="return false;" class="glyph-link" aria-label="TikTok Ordo Mindset">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.74-3.94-1.72-.18-.17-.35-.36-.51-.55v6.55c.01 1.95-.59 3.97-1.97 5.35-1.39 1.43-3.48 2.22-5.49 2.15-2.44-.04-4.88-1.37-5.96-3.56-1.22-2.39-1-5.42.63-7.51 1.45-1.92 3.86-2.93 6.24-2.73v4.03c-1.42-.14-2.92.29-3.9 1.34-.96 1.01-1.26 2.51-.83 3.84.4 1.34 1.55 2.41 2.94 2.65 1.44.29 3.07-.31 3.73-1.63.47-.87.5-1.92.49-2.9V0h3.87z"/>
+                    </svg>
+                </a>
+                <div class="glyph-label">Ordo Mindset</div>
+            </div>
+
+            <!-- GLYPH UNIT: TIKTOK QKOMMAND -->
+            <div class="glyph-item">
+                <a href="#" onclick="return false;" class="glyph-link" aria-label="TikTok QKommand">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.74-3.94-1.72-.18-.17-.35-.36-.51-.55v6.55c.01 1.95-.59 3.97-1.97 5.35-1.39 1.43-3.48 2.22-5.49 2.15-2.44-.04-4.88-1.37-5.96-3.56-1.22-2.39-1-5.42.63-7.51 1.45-1.92 3.86-2.93 6.24-2.73v4.03c-1.42-.14-2.92.29-3.9 1.34-.96 1.01-1.26 2.51-.83 3.84.4 1.34 1.55 2.41 2.94 2.65 1.44.29 3.07-.31 3.73-1.63.47-.87.5-1.92.49-2.9V0h3.87z"/>
+                </svg>
+                </a>
+                <div class="glyph-label">QKommand</div>
+            </div>
+
+        </div>
+
         <!-- CATEGORY: MISSION & CORE FEED PANELS -->
         <div class="panel-stack">
+            
+            <!-- PANEL: ORDO MINDSET CORES -->
             <article class="feed-panel" id="ordo-mindset">
                 <h2 class="panel-title">The Ordo Mindset</h2>
-                <p class="panel-body">Forget waiting around for a magic spark of motivation. Driven by my experiences as a US Army War Veteran, The Ordo Mindset collection taps into the blueprint used to train elite teams, and will help you lock into the next small step.  </p>
+                <p class="panel-body">Forget waiting around for a magic spark of motivation. Driven by my experiences as a US Army War Veteran, The Ordo Mindset collection taps into the blueprint used to train elite teams, and will help you lock into the next small step.</p>
                 <div style="text-align: center;">
                     <a href="https://vng-org.github.io/vcs/ordo/index.html" class="btn-cyber">View The Collection</a>
                 </div>
             </article>
+
+            <!-- PANEL: COMMANDER Q REMIXES SHOWCASE -->
+            <article class="feed-panel" id="q-remixes">
+                <h2 class="panel-title">Commander Q Remixes</h2>
+                <p class="panel-body">Come check out the cool song mashups and track blends I've discovered or put together. Music is all about finding the right rhythm and energy—tap below to see what's currently spinning.</p>
+                <div style="text-align: center;">
+                    <a href="#" onclick="return false;" class="btn-cyber">Listen to Remixes</a>
+                </div>
+            </article>
+
         </div>
 
     </main>
