@@ -1,424 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- CATEGORY: METADATA & GRAPHICS INTERFACE -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QKommand</title>
-    <style>
-        /* CATEGORY: THEME VARIABLES & CORES */
-        :root {
-            --bg-deep: #050508;
-            --text-main: #FFFFFF;
-            --text-muted: #FFFFFF;
-            --cyber-blue: #A5C9FF;
-            --cyber-purple: #D1B3FF;
-            --panel-bg: rgba(15, 15, 25, 0.6);
-            --border-glow: rgba(209, 179, 255, 0.2);
-            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
+  <meta charset="UTF-8" />
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-        html {
-            scroll-behavior: smooth;
-        }
+  <meta name="theme-color" content="#090611" />
 
-        body {
-            background-color: var(--bg-deep);
-            color: var(--text-main);
-            font-family: var(--font-stack);
-            line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+  <meta
+    name="description"
+    content="Commander Q's home for new adventures, living lore, and music from New Kaineng City."
+  />
 
-        /* CATEGORY: BACKGROUND CANVAS */
-        #starfield {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-        }
+  <title>Commander Q | Adventures and Music</title>
 
-        /* CATEGORY: NAVIGATION HEADER */
-        header {
-            width: 100%;
-            max-width: 600px;
-            position: sticky;
-            top: 0;
-            background: var(--bg-deep); 
-            z-index: 100;
-            padding: 1.5rem 1rem;
-            border-bottom: 1px solid var(--border-glow);
-            transition: max-width 0.3s ease, padding 0.3s ease;
-        }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
 
-        .nav-scroll-container {
-            width: 100%;
-            overflow-x: auto;
-            display: flex;
-            scrollbar-width: none; 
-        }
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
 
-        .nav-scroll-container::-webkit-scrollbar {
-            display: none; 
-        }
-
-        .nav-track {
-            display: flex;
-            gap: 0.5rem;
-            width: 100%;
-        }
-
-        @keyframes tabPulse {
-            0% { border-color: var(--border-glow); box-shadow: 0 0 2px rgba(209, 179, 255, 0.1); }
-            50% { border-color: rgba(209, 179, 255, 0.5); box-shadow: 0 0 8px rgba(209, 179, 255, 0.3); }
-            100% { border-color: var(--border-glow); box-shadow: 0 0 2px rgba(209, 179, 255, 0.1); }
-        }
-
-        .nav-link {
-            flex: 1 1 auto;
-            max-width: calc(50% - 0.25rem);
-            min-width: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0.5rem;
-            background: var(--panel-bg);
-            border: 1px solid var(--border-glow);
-            color: #FFFFFF;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-decoration: none;
-            transition: background 0.3s ease, color 0.3s ease;
-            animation: tabPulse 3s infinite ease-in-out;
-        }
-
-        .nav-link:hover {
-            border-color: var(--cyber-purple);
-            color: var(--cyber-blue);
-            background: rgba(209, 179, 255, 0.1);
-        }
-
-        /* CATEGORY: PORTAL LAYOUT WRAPPER */
-        .portal-wrapper {
-            width: 100%;
-            max-width: 600px;
-            padding: 2rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-grow: 1;
-            transition: max-width 0.3s ease, padding 0.3s ease;
-        }
-
-        /* CATEGORY: IDENTITY & AVATAR */
-        .welcome-text {
-            font-size: 1.15rem;
-            text-transform: uppercase;
-            letter-spacing: 0.25em;
-            margin-bottom: 2rem;
-            text-align: center;
-            background: linear-gradient(90deg, var(--cyber-blue) 0%, #FFFFFF 50%, var(--cyber-purple) 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: cyberSheen 4s infinite linear;
-            font-weight: 700;
-        }
-
-        @keyframes cyberSheen {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        .avatar-container {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .avatar-image {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--cyber-blue);
-            box-shadow: 0 0 15px var(--border-glow);
-        }
-
-        /* CATEGORY: GLYPH NETWORK LINKS */
-        .glyph-container {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-            justify-content: center;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        .glyph-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100px;
-            text-align: center;
-        }
-
-        .glyph-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            background: var(--panel-bg);
-            border: 1px solid var(--border-glow);
-            border-radius: 50%;
-            color: var(--cyber-purple);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .glyph-link:hover {
-            color: var(--cyber-blue);
-            border-color: var(--cyber-blue);
-            transform: scale(1.05);
-            box-shadow: 0 0 10px rgba(165, 201, 255, 0.2);
-        }
-
-        .glyph-link svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        .glyph-label {
-            margin-top: 0.6rem;
-            font-size: 0.65rem;
-            color: var(--text-main);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            word-wrap: break-word;
-            white-space: normal;
-            width: 100%;
-        }
-
-        /* CATEGORY: FEED PANELS BLOCK */
-        .panel-stack {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-            margin-bottom: 4rem;
-        }
-
-        .feed-panel {
-            background: var(--panel-bg);
-            border: 1px solid var(--border-glow);
-            padding: 1.5rem;
-            border-radius: 4px;
-            backdrop-filter: blur(4px);
-            transition: border-color 0.4s ease, transform 0.4s ease;
-            text-align: center;
-        }
-
-        .feed-panel:hover {
-            border-color: rgba(165, 201, 255, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .panel-title {
-            font-size: 1.1rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            margin-bottom: 0.75rem;
-            color: var(--text-main);
-            text-align: center;
-        }
-
-        .panel-body {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin-bottom: 1.25rem;
-            text-align: center;
-        }
-
-        /* CATEGORY: BUTTONS & INTERACTION ELEMENTS */
-        .btn-cyber {
-            display: inline-block;
-            background: transparent;
-            border: 1px solid var(--cyber-blue);
-            color: var(--cyber-blue);
-            padding: 0.6rem 1.2rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .btn-cyber:hover {
-            background: var(--cyber-blue);
-            color: var(--bg-deep);
-        }
-
-        /* CATEGORY: TERMINAL FOOTER */
-        footer {
-            width: 100%;
-            padding: 2rem 1rem;
-            text-align: center;
-            background: linear-gradient(to top, var(--bg-deep) 40%, transparent);
-            margin-top: auto;
-        }
-
-        .footer-link {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #FFFFFF;
-            text-decoration: underline;
-            transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: var(--cyber-blue);
-        }
-
-        /* CATEGORY: DESKTOP DISPLAY ADAPTATIONS */
-        @media (min-width: 768px) {
-            header {
-                max-width: 1000px;
-                padding: 2rem;
-            }
-
-            .portal-wrapper {
-                max-width: 1000px;
-                padding: 3rem 2rem;
-            }
-
-            .nav-link {
-                max-width: none;
-                font-size: 0.85rem;
-            }
-
-            .welcome-text {
-                font-size: 1.6rem;
-                margin-bottom: 2.5rem;
-            }
-
-            .glyph-label {
-                font-size: 0.75rem;
-            }
-
-            .panel-title {
-                font-size: 1.3rem;
-            }
-
-            .panel-body {
-                font-size: 1.05rem;
-            }
-
-            .footer-link {
-                font-size: 0.85rem;
-            }
-
-            .panel-stack {
-                gap: 1.5rem;
-            }
-        }
-    </style>
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body id="top">
 
-    <canvas id="starfield"></canvas>
+<body>
+  <!-- Animated starfield -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
 
-    <header>
-        <div class="nav-scroll-container">
-            <div class="nav-track">
-                <a href="#top" class="nav-link">Home</a>
-                <a href="mission/index.html" class="nav-link">My Mission</a>
+  <!-- Moving purple background glow -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Commander Q homepage">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+
+      <span class="brand-text">
+        <strong>Commander Q</strong>
+        <small>Journal of Tyria and Beyond</small>
+      </span>
+    </a>
+
+    <!-- Mobile menu button -->
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Open navigation"
+      aria-controls="site-navigation"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Main navigation -->
+    <nav
+      id="site-navigation"
+      class="site-nav"
+      aria-label="Primary navigation"
+    >
+      <a href="#home">Home</a>
+      <a href="#adventures">Living Lore</a>
+      <a href="#music">Music District</a>
+      <a href="#about">About Q</a>
+
+      <a class="mist-link" href="ordo/index.html">
+        Enter the Mists
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="home" class="hero section-shell reveal">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          Broadcasting from New Kaineng City
+        </p>
+
+        <h1>
+          New music.<br />
+          New adventures.<br />
+          <span>One living journal.</span>
+        </h1>
+
+        <p class="hero-text">
+          Follow Commander Q across Tyria and beyond. Discover new
+          stories, explore characters and locations, and step into
+          the clubs of New Kaineng.
+        </p>
+
+        <div class="hero-actions">
+          <a
+            class="button button-primary"
+            href="#adventures"
+          >
+            Read the Latest Adventure
+          </a>
+
+          <a
+            class="button button-secondary"
+            href="#music"
+          >
+            Hear New Music
+          </a>
+        </div>
+
+        <div
+          class="hero-meta"
+          aria-label="Current journal details"
+        >
+          <div>
+            <span>Current Location</span>
+            <strong>New Kaineng City</strong>
+          </div>
+
+          <div>
+            <span>Latest Dispatch</span>
+            <strong>Whispers in Neon Rain</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Apartment view -->
+      <div
+        class="apartment-window"
+        aria-label="A view from Commander Q's New Kaineng apartment"
+      >
+        <div class="window-stars" aria-hidden="true"></div>
+
+        <div class="city-silhouette" aria-hidden="true">
+          <span class="tower tower-one"></span>
+          <span class="tower tower-two"></span>
+          <span class="tower tower-three"></span>
+          <span class="tower tower-four"></span>
+          <span class="tower tower-five"></span>
+          <span class="tower tower-six"></span>
+        </div>
+
+        <div class="city-lights" aria-hidden="true"></div>
+
+        <div class="window-overlay" aria-hidden="true"></div>
+
+        <div class="apartment-desk" aria-hidden="true">
+          <div class="journal-book"></div>
+          <div class="tea-cup"></div>
+          <div class="lantern"></div>
+        </div>
+
+        <div class="window-caption">
+          <span>Commander Q's Apartment</span>
+          <strong>Above the neon streets</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main destination cards -->
+    <section
+      class="featured-grid section-shell reveal"
+      aria-label="Featured destinations"
+    >
+      <!-- Living Lore -->
+      <article id="adventures" class="feature-card lore-card">
+        <div class="feature-icon" aria-hidden="true">✧</div>
+
+        <p class="eyebrow">Living Lore</p>
+
+        <h2>Adventures in Tyria and Beyond</h2>
+
+        <p>
+          Stories, characters, locations, and organizations woven
+          through Commander Q's journey.
+        </p>
+
+        <a href="lore/index.html">
+          Explore the Archive
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
+
+      <!-- Music -->
+      <article id="music" class="feature-card music-card">
+        <div class="feature-icon" aria-hidden="true">♫</div>
+
+        <p class="eyebrow">
+          New Kaineng Music District
+        </p>
+
+        <h2>Step Into the Nightlife</h2>
+
+        <p>
+          Enter fictional clubs, discover playlists, and hear
+          original remixes inspired by the city after dark.
+        </p>
+
+        <a href="music/index.html">
+          Enter the District
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
+
+      <!-- About Commander Q -->
+      <article id="about" class="feature-card about-card">
+        <div class="feature-icon" aria-hidden="true">◈</div>
+
+        <p class="eyebrow">About Commander Q</p>
+
+        <h2>The Traveler Behind the Journal</h2>
+
+        <p>
+          Meet the character, allies, guild, history, and purpose
+          behind every entry in the archive.
+        </p>
+
+        <a href="about-q/index.html">
+          Meet Commander Q
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
+    </section>
+
+    <!-- Latest content -->
+    <section class="latest section-shell reveal">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">
+            Latest from Commander Q
+          </p>
+
+          <h2>Stories and sounds from the road</h2>
+        </div>
+
+        <a href="archive/index.html">
+          View all updates
+        </a>
+      </div>
+
+      <div class="latest-grid">
+        <!-- Latest story -->
+        <article class="journal-card content-card">
+          <div class="card-visual journal-visual">
+            <span>New Kaineng City</span>
+          </div>
+
+          <div class="card-body">
+            <span class="content-tag">
+              New Adventure
+            </span>
+
+            <h3>Whispers in the Neon Rain</h3>
+
+            <p>
+              A rumor moves through the entertainment district,
+              drawing Q toward a forgotten club beneath the
+              jade-lit streets.
+            </p>
+
+            <a href="lore/whispers-in-the-neon-rain.html">
+              Continue reading →
+            </a>
+          </div>
+        </article>
+
+        <!-- Featured music -->
+        <article class="music-player content-card">
+          <div class="card-visual music-visual">
+            <button
+              class="play-button"
+              type="button"
+              aria-label="Play featured track"
+            >
+              ▶
+            </button>
+          </div>
+
+          <div class="card-body">
+            <span class="content-tag">
+              Now Playing
+            </span>
+
+            <h3>Midnight Reflections</h3>
+
+            <p>
+              Neon Lotus · Synthwave / Electronic
+            </p>
+
+            <div class="progress" aria-hidden="true">
+              <span></span>
             </div>
-        </div>
-    </header>
 
-    <main class="portal-wrapper">
+            <a href="music/neon-lotus/index.html">
+              Visit Neon Lotus →
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
 
-        <h1 class="welcome-text">Welcome to QKommand</h1>
+    <!-- Mists portal -->
+    <section class="mists section-shell reveal">
+      <div class="mist-content">
+        <p class="eyebrow">Beyond Tyria</p>
 
-        <div class="avatar-container">
-            <img src="images/headshot.jpg" alt="CommandRQ Headshot" class="avatar-image">
-        </div>
+        <h2>Leave through the Mists</h2>
 
-        <!-- CATEGORY: BRAND GLYPH LINKS CONTAINER -->
-        <div class="glyph-container">
-            
-            <!-- GLYPH UNIT: APPLE MUSIC PLAYLISTS -->
-            <div class="glyph-item">
-                <a href="https://music.apple.com/profile/cmdrq_music" target="_blank" class="glyph-link" aria-label="Apple Music Profile">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h6V3h-6z"/>
-                    </svg>
-                </a>
-                <div class="glyph-label">My Music Playlists</div>
-            </div>
+        <p>
+          Cross into Ordo Mindset for books, practical guides,
+          field notes, and the story of the person behind
+          Commander Q.
+        </p>
+      </div>
 
-            <!-- GLYPH UNIT: TIKTOK SOCIAL MEDIA -->
-            <div class="glyph-item">
-                <a href="https://www.tiktok.com/@commandr_q" target="_blank" class="glyph-link" aria-label="TikTok Social Media">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.74-3.94-1.72-.18-.17-.35-.36-.51-.55v6.55c.01 1.95-.59 3.97-1.97 5.35-1.39 1.43-3.48 2.22-5.49 2.15-2.44-.04-4.88-1.37-5.96-3.56-1.22-2.39-1-5.42.63-7.51 1.45-1.92 3.86-2.93 6.24-2.73v4.03c-1.42-.14-2.92.29-3.9 1.34-.96 1.01-1.26 2.51-.83 3.84.4 1.34 1.55 2.41 2.94 2.65 1.44.29 3.07-.31 3.73-1.63.47-.87.5-1.92.49-2.9V0h3.87z"/>
-                    </svg>
-                </a>
-                <div class="glyph-label">Social Media</div>
-            </div>
+      <div class="mist-portal" aria-hidden="true">
+        <div class="portal-ring portal-ring-one"></div>
+        <div class="portal-ring portal-ring-two"></div>
+        <div class="portal-core"></div>
+      </div>
 
-        </div>
+      <a
+        class="button button-mist"
+        href="ordo/index.html"
+      >
+        Enter Ordo Mindset
+      </a>
+    </section>
+  </main>
 
-        <!-- CATEGORY: MISSION & CORE FEED PANELS -->
-        <div class="panel-stack">
-            
-            <!-- PANEL: ORDO MINDSET CORES -->
-            <article class="feed-panel" id="ordo-mindset">
-                <h2 class="panel-title">The Ordo Mindset</h2>
-                <p class="panel-body">Forget waiting around for a magic spark of motivation. Driven by my experiences as a US Army War Veteran, The Ordo Mindset collection taps into the blueprint used to train elite teams, and will help you lock into the next small step.</p>
-                <div style="text-align: center;">
-                    <a href="https://vng-org.github.io/vcs/ordo/index.html" class="btn-cyber">View The Collection</a>
-                </div>
-            </article>
+  <!-- Footer -->
+  <footer class="site-footer section-shell">
+    <div class="footer-brand">
+      <strong>Commander Q</strong>
 
-            <!-- PANEL: COMMANDER Q REMIXES SHOWCASE -->
-            <article class="feed-panel" id="q-remixes">
-                <h2 class="panel-title">Commander Q Remixes</h2>
-                <p class="panel-body">Come check out the cool song mashups and track blends I've discovered or put together. Music is all about finding the right rhythm and energy—tap below to see what's currently spinning.</p>
-                <div style="text-align: center;">
-                    <a href="#" onclick="return false;" class="btn-cyber">Coming Soon</a>
-                </div>
-            </article>
+      <p>
+        Stories, music, and discoveries from Tyria and beyond.
+      </p>
+    </div>
 
-        </div>
+    <div class="footer-links">
+      <a href="lore/index.html">Living Lore</a>
+      <a href="music/index.html">Music District</a>
+      <a href="about-q/index.html">About Q</a>
+      <a href="ordo/index.html">Ordo Mindset</a>
+    </div>
 
-    </main>
+    <p class="copyright">
+      Fan-created project inspired by Guild Wars 2.
+    </p>
+  </footer>
 
-    <footer>
-        <a href="https://vng-org.github.io/vcs/#home" target="_blank" class="footer-link">Powered by Vanguard Citizen Services</a>
-    </footer>
-
-    <script src="starfield.js"></script>
+  <!-- Main JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
