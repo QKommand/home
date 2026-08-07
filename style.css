@@ -1,8 +1,3 @@
-/* =========================================================
-   COMMANDER Q
-   Simplified homepage styles
-   ========================================================= */
-
 :root {
   --background: #07040d;
   --background-soft: #100718;
@@ -29,11 +24,6 @@
   --transition: 220ms ease;
 }
 
-
-/* -----------------------------
-   Reset
------------------------------- */
-
 *,
 *::before,
 *::after {
@@ -49,7 +39,6 @@ body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
-
   color: var(--text);
 
   background:
@@ -71,7 +60,6 @@ body {
 
   font-family: "Inter", sans-serif;
   line-height: 1.6;
-
   animation: backgroundPulse 14s ease-in-out infinite;
 }
 
@@ -106,19 +94,12 @@ h3,
   background: var(--gold-bright);
 }
 
-
-/* -----------------------------
-   Animated background
------------------------------- */
-
 #starfield {
   position: fixed;
   inset: 0;
   z-index: -3;
-
   width: 100%;
   height: 100%;
-
   pointer-events: none;
 }
 
@@ -126,7 +107,6 @@ h3,
   position: fixed;
   inset: -20%;
   z-index: -2;
-
   pointer-events: none;
 
   background:
@@ -142,21 +122,11 @@ h3,
     );
 
   filter: blur(50px);
-
   animation: ambientDrift 18s ease-in-out infinite alternate;
 }
 
-
-/* -----------------------------
-   Shared layout
------------------------------- */
-
 .section-shell {
-  width: min(
-    calc(100% - 32px),
-    var(--content-width)
-  );
-
+  width: min(calc(100% - 32px), var(--content-width));
   margin-inline: auto;
 }
 
@@ -167,7 +137,6 @@ main {
 
 .eyebrow {
   margin-bottom: 10px;
-
   color: var(--gold);
   font-size: 0.75rem;
   font-weight: 600;
@@ -179,13 +148,10 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   min-height: 48px;
   padding: 12px 20px;
-
   border: 1px solid transparent;
   border-radius: 999px;
-
   font-size: 0.9rem;
   font-weight: 600;
 
@@ -208,29 +174,22 @@ main {
   outline-offset: 4px;
 }
 
-
-/* -----------------------------
-   Header
------------------------------- */
-
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 28px;
-
   min-height: var(--header-height);
+
   padding-inline: max(
     16px,
     calc((100vw - var(--content-width)) / 2)
   );
 
   border-bottom: 1px solid var(--border);
-
   background: rgba(7, 4, 13, 0.82);
   backdrop-filter: blur(16px);
 }
@@ -239,23 +198,18 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-
   flex-shrink: 0;
 }
 
 .brand-mark {
   display: grid;
   place-items: center;
-
   width: 40px;
   height: 40px;
-
   border: 1px solid rgba(217, 187, 119, 0.28);
   border-radius: 50%;
-
   color: var(--gold-bright);
   font-size: 1rem;
-
   background: rgba(217, 187, 119, 0.05);
 }
 
@@ -273,7 +227,6 @@ main {
 
 .brand-text small {
   margin-top: 4px;
-
   color: var(--gold);
   font-size: 0.55rem;
   letter-spacing: 0.1em;
@@ -289,14 +242,11 @@ main {
 
 .site-nav a {
   position: relative;
-
   padding-block: 8px;
-
   color: var(--text-soft);
   font-size: 0.84rem;
   font-weight: 500;
   white-space: nowrap;
-
   transition: color var(--transition);
 }
 
@@ -306,19 +256,14 @@ main {
 
 .site-nav a:not(.mist-link)::after {
   content: "";
-
   position: absolute;
   left: 0;
   bottom: 2px;
-
   width: 100%;
   height: 1px;
-
   background: var(--gold);
-
   transform: scaleX(0);
   transform-origin: right;
-
   transition: transform var(--transition);
 }
 
@@ -329,36 +274,22 @@ main {
 
 .site-nav .mist-link {
   padding: 9px 15px;
-
   border: 1px solid var(--border-purple);
   border-radius: 999px;
-
   color: var(--purple-bright);
-
   background: rgba(158, 104, 216, 0.06);
 }
 
 .site-nav .mist-link:hover {
   border-color: var(--purple-bright);
   color: white;
-
   box-shadow: 0 0 22px rgba(158, 104, 216, 0.14);
 }
-
-
-/* -----------------------------
-   Hero
------------------------------- */
 
 .hero {
   display: flex;
   align-items: center;
-
-  min-height: min(
-    720px,
-    calc(100vh - var(--header-height))
-  );
-
+  min-height: min(720px, calc(100vh - var(--header-height)));
   padding-block: clamp(90px, 13vw, 170px);
 }
 
@@ -366,13 +297,11 @@ main {
   width: 100%;
   max-width: 980px;
   margin-inline: auto;
-
   text-align: center;
 }
 
 .hero h1 {
   margin: 0 auto 24px;
-
   font-size: clamp(3rem, 6.7vw, 6.7rem);
   font-weight: 600;
   line-height: 1;
@@ -386,22 +315,15 @@ main {
 .hero-text {
   max-width: 700px;
   margin: 0 auto;
-
   color: var(--text-soft);
   font-size: clamp(1rem, 1.4vw, 1.16rem);
 }
-
-
-/* -----------------------------
-   Destinations
------------------------------- */
 
 .destination-section {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
   gap: 18px;
-
   padding-bottom: 80px;
 }
 
@@ -414,15 +336,11 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   min-height: 320px;
   padding: clamp(26px, 4vw, 42px);
-
   border: 1px solid var(--border);
   border-radius: var(--radius);
-
   text-align: center;
-
   background: var(--panel);
 
   transition:
@@ -433,14 +351,12 @@ main {
 
 .destination-card:hover {
   transform: translateY(-4px);
-
   border-color: var(--border-purple);
   background: var(--panel-hover);
 }
 
 .destination-label {
   margin-bottom: 18px;
-
   color: var(--gold);
   font-size: 0.72rem;
   font-weight: 600;
@@ -451,7 +367,6 @@ main {
 .destination-card h2 {
   max-width: 520px;
   margin-bottom: 14px;
-
   font-size: clamp(1.8rem, 3vw, 3rem);
   font-weight: 500;
   line-height: 1.15;
@@ -460,7 +375,6 @@ main {
 .destination-card p {
   max-width: 580px;
   margin-bottom: 34px;
-
   color: var(--text-soft);
 }
 
@@ -468,9 +382,7 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-
   margin-top: auto;
-
   color: var(--gold-bright);
   font-size: 0.86rem;
   font-weight: 600;
@@ -484,21 +396,13 @@ main {
   transform: translateX(4px);
 }
 
-
-/* -----------------------------
-   TikTok card
------------------------------- */
-
 .tiktok-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   padding: 24px;
-
   border: 1px solid var(--border-purple);
   border-radius: var(--radius);
-
   text-align: center;
 
   background:
@@ -517,7 +421,6 @@ main {
 
 .tiktok-card:hover {
   transform: translateY(-3px);
-
   border-color: var(--purple-bright);
 
   background:
@@ -532,7 +435,6 @@ main {
 
 .tiktok-label {
   margin-bottom: 8px;
-
   color: var(--gold);
   font-size: 0.7rem;
   font-weight: 600;
@@ -542,7 +444,6 @@ main {
 
 .tiktok-card strong {
   margin-bottom: 14px;
-
   color: var(--text);
   font-family: "Cinzel", serif;
   font-size: clamp(1.1rem, 2vw, 1.4rem);
@@ -553,7 +454,6 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-
   color: var(--purple-bright);
   font-size: 0.85rem;
   font-weight: 600;
@@ -567,23 +467,15 @@ main {
   transform: translateX(4px);
 }
 
-
-/* -----------------------------
-   Mists
------------------------------- */
-
 .mists {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 34px;
-
   margin-bottom: 80px;
   padding: clamp(30px, 5vw, 52px);
-
   border: 1px solid var(--border-purple);
   border-radius: var(--radius);
-
   text-align: center;
 
   background:
@@ -600,60 +492,42 @@ main {
 
 .mists h2 {
   margin-bottom: 12px;
-
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 500;
 }
 
 .mists p:not(.eyebrow) {
   margin-bottom: 0;
-
   color: var(--text-soft);
 }
 
 .button-mist {
   flex-shrink: 0;
-
   border-color: var(--border-purple);
-
   color: var(--text);
-
   background: rgba(158, 104, 216, 0.1);
-
   box-shadow: 0 0 24px rgba(158, 104, 216, 0.08);
 }
 
 .button-mist:hover {
   border-color: var(--purple-bright);
-
   background: rgba(158, 104, 216, 0.17);
-
   box-shadow: 0 0 28px rgba(158, 104, 216, 0.16);
 }
-
-
-/* -----------------------------
-   Footer
------------------------------- */
 
 .site-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-
   padding-block: 36px 44px;
-
   border-top: 1px solid var(--border);
-
   text-align: center;
 }
 
 .footer-intro strong {
   display: block;
-
   margin-bottom: 6px;
-
   font-family: "Cinzel", serif;
   font-size: 1rem;
   letter-spacing: 0.06em;
@@ -661,20 +535,19 @@ main {
 
 .site-footer p {
   margin-bottom: 0;
-
   color: var(--text-muted);
   font-size: 0.8rem;
+}
+
+.site-credit {
+  margin-top: 8px;
+  color: var(--gold) !important;
 }
 
 .fan-disclaimer {
   max-width: 980px;
   line-height: 1.7;
 }
-
-
-/* -----------------------------
-   Reveal animation
------------------------------- */
 
 .reveal {
   opacity: 0;
@@ -689,11 +562,6 @@ main {
   opacity: 1;
   transform: translateY(0);
 }
-
-
-/* -----------------------------
-   Keyframes
------------------------------- */
 
 @keyframes backgroundPulse {
   0%,
@@ -716,17 +584,11 @@ main {
   }
 }
 
-
-/* -----------------------------
-   Tablet
------------------------------- */
-
 @media (max-width: 960px) {
   .site-header {
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-
     padding-block: 12px;
   }
 
@@ -743,11 +605,6 @@ main {
     flex-direction: column;
   }
 }
-
-
-/* -----------------------------
-   Mobile
------------------------------- */
 
 @media (max-width: 680px) {
   :root {
@@ -774,7 +631,6 @@ main {
   .site-nav {
     flex-wrap: wrap;
     gap: 5px 16px;
-
     max-width: 420px;
   }
 
@@ -799,11 +655,6 @@ main {
     min-height: 285px;
   }
 }
-
-
-/* -----------------------------
-   Small mobile
------------------------------- */
 
 @media (max-width: 520px) {
   .section-shell {
@@ -837,20 +688,13 @@ main {
   }
 }
 
-
-/* -----------------------------
-   Reduced motion
------------------------------- */
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     scroll-behavior: auto !important;
-
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-
     transition-duration: 0.01ms !important;
   }
 
