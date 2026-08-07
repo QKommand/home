@@ -118,6 +118,7 @@ if (starfieldCanvas) {
 
   let canvasWidth = window.innerWidth;
   let canvasHeight = window.innerHeight;
+
   let pixelRatio = Math.min(
     window.devicePixelRatio || 1,
     2
