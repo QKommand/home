@@ -37,10 +37,11 @@
   <canvas id="starfield" aria-hidden="true"></canvas>
   <div class="ambient-glow" aria-hidden="true"></div>
 
+  <!-- Header -->
   <header class="site-header">
     <a
       class="brand"
-      href="#home"
+      href="index.html"
       aria-label="Commander Q homepage"
     >
       <span class="brand-mark" aria-hidden="true">✦</span>
@@ -55,13 +56,31 @@
       class="site-nav"
       aria-label="Primary navigation"
     >
-      <a href="#home">Home</a>
-      <a href="#stories">Stories</a>
-      <a href="#music">Music</a>
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="stories/index.html">
+        Stories
+      </a>
 
       <a
+        href="https://youtube.com/@commandrq"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Music
+      </a>
+
+      <!--
+        Ordo Mindset is not live yet.
+        Replace # with the Ordo page path when ready.
+      -->
+      <a
         class="mist-link"
-        href="ordo/index.html"
+        href="#"
+        aria-disabled="true"
+        title="Ordo Mindset coming soon"
       >
         Enter the Mists
       </a>
@@ -69,6 +88,8 @@
   </header>
 
   <main>
+
+    <!-- Hero -->
     <section
       id="home"
       class="hero section-shell reveal"
@@ -92,14 +113,17 @@
       </div>
     </section>
 
+    <!-- Main destinations -->
     <section
       class="destination-section section-shell reveal"
       aria-label="Explore Commander Q"
     >
+
+      <!-- Stories -->
       <a
         id="stories"
         class="destination-card"
-        href="lore/index.html"
+        href="stories/index.html"
       >
         <span class="destination-label">
           Living Lore
@@ -120,13 +144,17 @@
         </span>
       </a>
 
+      <!-- Music -->
       <div
         id="music"
         class="destination-group"
       >
+
         <a
           class="destination-card music-destination"
-          href="music/index.html"
+          href="https://youtube.com/@commandrq"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <span class="destination-label">
             New Kaineng Music District
@@ -143,20 +171,21 @@
           </p>
 
           <span class="destination-link">
-            Enter the district
+            Enter the music district
             <span aria-hidden="true">→</span>
           </span>
         </a>
 
+        <!-- TikTok -->
         <a
           class="tiktok-card"
-          href="https://www.tiktok.com/@YOUR-USERNAME"
+          href="https://www.tiktok.com/@qkommand"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Watch Commander Q remix clips and gameplay clips on TikTok"
         >
           <span class="tiktok-label">
-            Commander Q on TikTok
+            QKommand on TikTok
           </span>
 
           <strong>
@@ -168,9 +197,11 @@
             <span aria-hidden="true">→</span>
           </span>
         </a>
+
       </div>
     </section>
 
+    <!-- The Mists / Ordo -->
     <section
       class="mists section-shell reveal"
       aria-labelledby="mists-title"
@@ -190,18 +221,30 @@
         </p>
       </div>
 
+      <!--
+        Ordo Mindset is not live yet.
+        Replace # with the future path, such as:
+        ordo/index.html
+      -->
       <a
         class="button button-mist"
-        href="ordo/index.html"
+        href="#"
+        aria-disabled="true"
+        title="Ordo Mindset coming soon"
       >
         Enter Ordo Mindset
       </a>
     </section>
+
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer section-shell">
+
     <div class="footer-intro">
-      <strong>Commander Q</strong>
+      <strong>
+        Commander Q
+      </strong>
 
       <p>
         Stories, music, and adventures from Tyria and beyond.
@@ -222,6 +265,7 @@
       or NCSOFT. All rights to the original Guild Wars 2 material are
       reserved by their respective copyright holders.
     </p>
+
   </footer>
 
   <script src="script.js"></script>
