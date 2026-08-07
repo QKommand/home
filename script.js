@@ -1,23 +1,8 @@
-/* =========================================================
-   COMMANDER Q
-   Simplified homepage interactions
-   ========================================================= */
-
 "use strict";
-
-
-/* -----------------------------
-   Reduced motion preference
------------------------------- */
 
 const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
 ).matches;
-
-
-/* -----------------------------
-   Scroll reveal
------------------------------- */
 
 const revealElements = document.querySelectorAll(".reveal");
 
@@ -48,11 +33,6 @@ if (prefersReducedMotion) {
   });
 }
 
-
-/* -----------------------------
-   Smooth internal navigation
------------------------------- */
-
 const internalLinks = document.querySelectorAll(
   'a[href^="#"]'
 );
@@ -80,11 +60,6 @@ internalLinks.forEach((link) => {
   });
 });
 
-
-/* -----------------------------
-   Header shadow
------------------------------- */
-
 const siteHeader = document.querySelector(".site-header");
 
 function updateHeaderShadow() {
@@ -105,11 +80,6 @@ window.addEventListener(
 );
 
 updateHeaderShadow();
-
-
-/* -----------------------------
-   Starfield and occasional comet
------------------------------- */
 
 const starfieldCanvas = document.getElementById("starfield");
 
@@ -206,15 +176,12 @@ if (starfieldCanvas) {
 
     reset() {
       this.active = false;
-
       this.x = -180;
       this.y = Math.random() * canvasHeight * 0.45 + 20;
-
       this.length = Math.random() * 100 + 120;
       this.speed = Math.random() * 0.18 + 0.22;
       this.angle = Math.random() * 0.16 + 0.22;
       this.opacity = 0;
-
       this.delay = Math.random() * 14000 + 9000;
       this.lastReset = performance.now();
     }
@@ -270,7 +237,6 @@ if (starfieldCanvas) {
       context.beginPath();
       context.moveTo(this.x, this.y);
       context.lineTo(tailX, tailY);
-
       context.strokeStyle = gradient;
       context.lineWidth = 1.4;
       context.lineCap = "round";
