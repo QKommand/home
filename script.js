@@ -7,85 +7,6 @@
 
 
 /* -----------------------------
-   Mobile navigation
------------------------------- */
-
-const menuToggle = document.querySelector(".menu-toggle");
-const siteNavigation = document.querySelector(".site-nav");
-const navigationLinks = document.querySelectorAll(".site-nav a");
-
-function openMenu() {
-  if (!menuToggle || !siteNavigation) {
-    return;
-  }
-
-  menuToggle.classList.add("is-open");
-  siteNavigation.classList.add("is-open");
-  document.body.classList.add("menu-open");
-
-  menuToggle.setAttribute("aria-expanded", "true");
-  menuToggle.setAttribute("aria-label", "Close navigation");
-}
-
-function closeMenu() {
-  if (!menuToggle || !siteNavigation) {
-    return;
-  }
-
-  menuToggle.classList.remove("is-open");
-  siteNavigation.classList.remove("is-open");
-  document.body.classList.remove("menu-open");
-
-  menuToggle.setAttribute("aria-expanded", "false");
-  menuToggle.setAttribute("aria-label", "Open navigation");
-}
-
-function toggleMenu() {
-  if (!siteNavigation) {
-    return;
-  }
-
-  const isOpen = siteNavigation.classList.contains("is-open");
-
-  if (isOpen) {
-    closeMenu();
-  } else {
-    openMenu();
-  }
-}
-
-if (menuToggle && siteNavigation) {
-  menuToggle.addEventListener("click", toggleMenu);
-
-  navigationLinks.forEach((link) => {
-    link.addEventListener("click", closeMenu);
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeMenu();
-    }
-  });
-
-  document.addEventListener("click", (event) => {
-    const clickedMenu =
-      siteNavigation.contains(event.target);
-
-    const clickedToggle =
-      menuToggle.contains(event.target);
-
-    if (
-      siteNavigation.classList.contains("is-open") &&
-      !clickedMenu &&
-      !clickedToggle
-    ) {
-      closeMenu();
-    }
-  });
-}
-
-
-/* -----------------------------
    Reduced motion preference
 ------------------------------ */
 
@@ -161,7 +82,7 @@ internalLinks.forEach((link) => {
 
 
 /* -----------------------------
-   Subtle header shadow
+   Header shadow
 ------------------------------ */
 
 const siteHeader = document.querySelector(".site-header");
@@ -171,12 +92,10 @@ function updateHeaderShadow() {
     return;
   }
 
-  if (window.scrollY > 16) {
-    siteHeader.style.boxShadow =
-      "0 12px 28px rgba(0, 0, 0, 0.24)";
-  } else {
-    siteHeader.style.boxShadow = "none";
-  }
+  siteHeader.style.boxShadow =
+    window.scrollY > 16
+      ? "0 12px 28px rgba(0, 0, 0, 0.24)"
+      : "none";
 }
 
 window.addEventListener(
@@ -189,7 +108,7 @@ updateHeaderShadow();
 
 
 /* -----------------------------
-   Animated starfield
+   Starfield and occasional comet
 ------------------------------ */
 
 const starfieldCanvas = document.getElementById("starfield");
@@ -205,6 +124,7 @@ if (starfieldCanvas) {
   );
 
   let stars = [];
+  let comet = null;
   let animationFrameId;
   let previousTime = performance.now();
   let resizeTimer;
@@ -278,6 +198,100 @@ if (starfieldCanvas) {
     }
   }
 
+  class Comet {
+    constructor() {
+      this.reset();
+    }
+
+    reset() {
+      this.active = false;
+
+      this.x = -180;
+      this.y = Math.random() * canvasHeight * 0.45 + 20;
+
+      this.length = Math.random() * 100 + 120;
+      this.speed = Math.random() * 0.18 + 0.22;
+      this.angle = Math.random() * 0.16 + 0.22;
+      this.opacity = 0;
+
+      this.delay = Math.random() * 14000 + 9000;
+      this.lastReset = performance.now();
+    }
+
+    update(deltaTime, currentTime) {
+      if (!this.active) {
+        if (currentTime - this.lastReset >= this.delay) {
+          this.active = true;
+          this.opacity = 0.72;
+        }
+
+        return;
+      }
+
+      this.x += this.speed * deltaTime;
+      this.y += this.speed * this.angle * deltaTime;
+
+      if (this.x > canvasWidth + this.length) {
+        this.reset();
+      }
+    }
+
+    draw() {
+      if (!this.active) {
+        return;
+      }
+
+      const tailX = this.x - this.length;
+      const tailY = this.y - this.length * this.angle;
+
+      const gradient = context.createLinearGradient(
+        this.x,
+        this.y,
+        tailX,
+        tailY
+      );
+
+      gradient.addColorStop(
+        0,
+        `rgba(255, 255, 255, ${this.opacity})`
+      );
+
+      gradient.addColorStop(
+        0.18,
+        `rgba(220, 184, 255, ${this.opacity * 0.8})`
+      );
+
+      gradient.addColorStop(
+        1,
+        "rgba(158, 104, 216, 0)"
+      );
+
+      context.beginPath();
+      context.moveTo(this.x, this.y);
+      context.lineTo(tailX, tailY);
+
+      context.strokeStyle = gradient;
+      context.lineWidth = 1.4;
+      context.lineCap = "round";
+      context.stroke();
+
+      context.beginPath();
+
+      context.arc(
+        this.x,
+        this.y,
+        1.7,
+        0,
+        Math.PI * 2
+      );
+
+      context.fillStyle =
+        `rgba(255, 255, 255, ${this.opacity})`;
+
+      context.fill();
+    }
+  }
+
   function getStarCount() {
     const estimatedCount =
       canvasWidth *
@@ -290,11 +304,13 @@ if (starfieldCanvas) {
     );
   }
 
-  function createStars() {
+  function createSky() {
     stars = Array.from(
       { length: getStarCount() },
       () => new Star()
     );
+
+    comet = new Comet();
   }
 
   function resizeCanvas() {
@@ -327,10 +343,10 @@ if (starfieldCanvas) {
       0
     );
 
-    createStars();
+    createSky();
   }
 
-  function drawStaticStarfield() {
+  function drawStaticSky() {
     context.clearRect(
       0,
       0,
@@ -343,7 +359,7 @@ if (starfieldCanvas) {
     });
   }
 
-  function animateStarfield(currentTime) {
+  function animateSky(currentTime) {
     const deltaTime = Math.min(
       currentTime - previousTime,
       40
@@ -363,20 +379,25 @@ if (starfieldCanvas) {
       star.draw();
     });
 
+    if (comet) {
+      comet.update(deltaTime, currentTime);
+      comet.draw();
+    }
+
     animationFrameId =
-      requestAnimationFrame(animateStarfield);
+      requestAnimationFrame(animateSky);
   }
 
-  function startStarfield() {
+  function startSky() {
     resizeCanvas();
 
     if (prefersReducedMotion) {
-      drawStaticStarfield();
+      drawStaticSky();
       return;
     }
 
     animationFrameId =
-      requestAnimationFrame(animateStarfield);
+      requestAnimationFrame(animateSky);
   }
 
   window.addEventListener("resize", () => {
@@ -386,7 +407,7 @@ if (starfieldCanvas) {
       resizeCanvas();
 
       if (prefersReducedMotion) {
-        drawStaticStarfield();
+        drawStaticSky();
       }
     }, 160);
   });
@@ -404,10 +425,10 @@ if (starfieldCanvas) {
         previousTime = performance.now();
 
         animationFrameId =
-          requestAnimationFrame(animateStarfield);
+          requestAnimationFrame(animateSky);
       }
     }
   );
 
-  startStarfield();
+  startSky();
 }
