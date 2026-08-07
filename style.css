@@ -203,8 +203,7 @@ main {
 .button:focus-visible,
 .site-nav a:focus-visible,
 .destination-card:focus-visible,
-.social-link:focus-visible,
-.footer-links a:focus-visible {
+.tiktok-card:focus-visible {
   outline: 2px solid var(--gold-bright);
   outline-offset: 4px;
 }
@@ -400,9 +399,15 @@ main {
 .destination-section {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
   gap: 18px;
 
   padding-bottom: 80px;
+}
+
+.destination-group {
+  display: grid;
+  gap: 14px;
 }
 
 .destination-card {
@@ -481,65 +486,85 @@ main {
 
 
 /* -----------------------------
-   Social links
+   TikTok card
 ------------------------------ */
 
-.social-section {
-  padding-bottom: 80px;
-  text-align: center;
-}
-
-.section-heading {
-  margin-bottom: 24px;
-  text-align: center;
-}
-
-.section-heading h2 {
-  margin-bottom: 0;
-
-  font-size: clamp(2rem, 3vw, 3rem);
-  font-weight: 500;
-}
-
-.social-links {
+.tiktok-card {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px;
-}
-
-.social-link {
-  display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
 
-  min-width: 138px;
-  padding: 13px 20px;
+  padding: 24px;
 
-  border: 1px solid var(--border);
-  border-radius: 999px;
+  border: 1px solid var(--border-purple);
+  border-radius: var(--radius);
 
-  color: var(--text-soft);
-  font-size: 0.9rem;
-  font-weight: 500;
   text-align: center;
 
-  background: rgba(255, 255, 255, 0.025);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(35, 15, 52, 0.82),
+      rgba(15, 8, 24, 0.9)
+    );
 
   transition:
     transform var(--transition),
     border-color var(--transition),
-    color var(--transition),
-    background var(--transition);
+    background var(--transition),
+    box-shadow var(--transition);
 }
 
-.social-link:hover {
-  transform: translateY(-2px);
+.tiktok-card:hover {
+  transform: translateY(-3px);
 
-  border-color: var(--border-purple);
+  border-color: var(--purple-bright);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(45, 20, 66, 0.88),
+      rgba(18, 9, 29, 0.94)
+    );
+
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
+}
+
+.tiktok-label {
+  margin-bottom: 8px;
+
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tiktok-card strong {
+  margin-bottom: 14px;
+
   color: var(--text);
+  font-family: "Cinzel", serif;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 500;
+}
 
-  background: var(--purple-soft);
+.tiktok-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: var(--purple-bright);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.tiktok-link span {
+  transition: transform var(--transition);
+}
+
+.tiktok-card:hover .tiktok-link span {
+  transform: translateX(4px);
 }
 
 
@@ -615,9 +640,9 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 20px;
 
-  padding-block: 34px 42px;
+  padding-block: 36px 44px;
 
   border-top: 1px solid var(--border);
 
@@ -641,22 +666,9 @@ main {
   font-size: 0.8rem;
 }
 
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.footer-links a {
-  color: var(--text-soft);
-  font-size: 0.8rem;
-
-  transition: color var(--transition);
-}
-
-.footer-links a:hover {
-  color: var(--gold-bright);
+.fan-disclaimer {
+  max-width: 980px;
+  line-height: 1.7;
 }
 
 
@@ -802,8 +814,7 @@ main {
     padding-block: 76px;
   }
 
-  .destination-section,
-  .social-section {
+  .destination-section {
     padding-bottom: 56px;
   }
 
@@ -812,9 +823,8 @@ main {
     padding: 24px;
   }
 
-  .social-link {
-    min-width: 112px;
-    padding-inline: 16px;
+  .tiktok-card {
+    padding: 22px 18px;
   }
 
   .mists {
