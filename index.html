@@ -2,28 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#090611" />
 
   <meta
     name="description"
-    content="Commander Q's home for stories from Tyria, music from New Kaineng, and adventures beyond the Mists."
+    content="Commander Q's personal archive for projects, Ordo Mindset, literature, music, remixes, and stories from the Vanguard Knights."
   />
 
-  <title>Commander Q | Stories, Music, and Adventures</title>
+  <title>Commander Q | Projects, Stories, Music & Ideas</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
@@ -31,243 +21,609 @@
   />
 
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .site-nav .active-link {
+      color: var(--gold-bright);
+    }
+
+    .site-nav .active-link::after {
+      transform: scaleX(1) !important;
+    }
+
+    .hero-home {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+      gap: clamp(36px, 7vw, 90px);
+      align-items: center;
+      min-height: min(760px, calc(100vh - var(--header-height)));
+      padding-block: clamp(80px, 10vw, 145px);
+    }
+
+    .hero-home .hero-copy {
+      max-width: 850px;
+      margin: 0;
+      text-align: left;
+    }
+
+    .hero-home h1 {
+      margin: 0 0 24px;
+      font-size: clamp(3rem, 6vw, 6.2rem);
+      font-weight: 600;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-home h1 span {
+      color: var(--gold-bright);
+    }
+
+    .hero-home .hero-text {
+      max-width: 670px;
+      margin: 0 0 30px;
+      color: var(--text-soft);
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button-primary {
+      border-color: rgba(217, 187, 119, 0.42);
+      color: var(--gold-bright);
+      background: rgba(217, 187, 119, 0.08);
+    }
+
+    .button-primary:hover {
+      border-color: var(--gold-bright);
+      background: rgba(217, 187, 119, 0.14);
+      box-shadow: 0 0 28px rgba(217, 187, 119, 0.12);
+    }
+
+    .button-secondary {
+      border-color: var(--border-purple);
+      color: var(--purple-bright);
+      background: rgba(158, 104, 216, 0.07);
+    }
+
+    .hero-portrait-wrap {
+      position: relative;
+      width: min(100%, 390px);
+      margin-inline: auto;
+    }
+
+    .hero-portrait-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 8% -8% -8% 8%;
+      z-index: -1;
+      border-radius: 28px;
+      border: 1px solid rgba(199, 156, 255, 0.22);
+      background: rgba(158, 104, 216, 0.06);
+    }
+
+    .hero-portrait {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center;
+      border: 1px solid rgba(217, 187, 119, 0.28);
+      border-radius: 28px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.34);
+      filter: saturate(0.92) contrast(1.03);
+    }
+
+    .portrait-caption {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .portrait-caption strong {
+      display: block;
+      font-family: "Cinzel", serif;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+    }
+
+    .portrait-caption span {
+      display: block;
+      margin-top: 4px;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .archive-intro {
+      padding: 0 0 28px;
+      text-align: center;
+    }
+
+    .archive-intro h2 {
+      margin-bottom: 12px;
+      font-size: clamp(2rem, 4vw, 3.7rem);
+      font-weight: 500;
+    }
+
+    .archive-intro p:not(.eyebrow) {
+      max-width: 720px;
+      margin-inline: auto;
+      color: var(--text-soft);
+    }
+
+    .archive-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding-bottom: 32px;
+    }
+
+    .archive-card {
+      min-height: 390px;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .archive-card h2 {
+      max-width: none;
+    }
+
+    .archive-card p {
+      max-width: 620px;
+    }
+
+    .archive-list {
+      display: grid;
+      gap: 8px;
+      width: 100%;
+      margin: -10px 0 30px;
+      padding: 0;
+      list-style: none;
+      color: var(--text-soft);
+      font-size: 0.88rem;
+    }
+
+    .archive-list li {
+      display: flex;
+      gap: 9px;
+      align-items: center;
+    }
+
+    .archive-list li::before {
+      content: "✦";
+      color: var(--gold);
+      font-size: 0.65rem;
+    }
+
+    .projects-card {
+      background:
+        linear-gradient(rgba(8, 17, 28, 0.86), rgba(10, 8, 18, 0.9)),
+        var(--panel);
+    }
+
+    .ordo-card {
+      background:
+        linear-gradient(rgba(28, 18, 10, 0.76), rgba(12, 8, 17, 0.92)),
+        var(--panel);
+    }
+
+    .music-card {
+      background:
+        linear-gradient(rgba(27, 9, 42, 0.82), rgba(11, 7, 18, 0.94)),
+        var(--panel);
+    }
+
+    .vanguard-card {
+      background:
+        linear-gradient(rgba(18, 20, 13, 0.8), rgba(9, 8, 13, 0.95)),
+        var(--panel);
+    }
+
+    .vanguard-feature {
+      margin-bottom: 80px;
+    }
+
+    .vanguard-quote {
+      margin: 0 0 28px;
+      color: var(--gold-bright);
+      font-family: "Cinzel", serif;
+      font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+      line-height: 1.5;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px 22px;
+      margin-top: 14px;
+      font-size: 0.8rem;
+    }
+
+    .footer-links a {
+      color: var(--text-soft);
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-bright);
+    }
+
+    @media (max-width: 960px) {
+      .hero-home {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-block: 82px;
+      }
+
+      .hero-home .hero-copy {
+        margin-inline: auto;
+        text-align: center;
+      }
+
+      .hero-home .hero-text {
+        margin-inline: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-portrait-wrap {
+        width: min(78vw, 350px);
+      }
+
+      .archive-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hero-home {
+        padding-block: 70px;
+      }
+
+      .hero-home h1 {
+        font-size: clamp(2.7rem, 13vw, 4.4rem);
+      }
+
+      .archive-card {
+        min-height: 330px;
+      }
+    }
+  </style>
 </head>
 
 <body>
   <canvas id="starfield" aria-hidden="true"></canvas>
   <div class="ambient-glow" aria-hidden="true"></div>
 
-  <!-- Header -->
   <header class="site-header">
-    <a
-      class="brand"
-      href="index.html"
-      aria-label="Commander Q homepage"
-    >
+    <a class="brand" href="index.html" aria-label="Commander Q homepage">
       <span class="brand-mark" aria-hidden="true">✦</span>
 
       <span class="brand-text">
         <strong>Commander Q</strong>
-        <small>Tyria and Beyond</small>
+        <small>Archive & Operations</small>
       </span>
     </a>
 
-    <nav
-      class="site-nav"
-      aria-label="Primary navigation"
-    >
-      <a href="index.html">
-        Home
-      </a>
-
-      <a href="stories/index.html">
-        Stories
-      </a>
-
-      <a
-        href="https://youtube.com/@commandrq"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Music
-      </a>
-
-      <!--
-        Ordo Mindset is not live yet.
-        Replace # with the Ordo page path when ready.
-      -->
-      <a
-        class="mist-link"
-        href="#"
-        aria-disabled="true"
-        title="Ordo Mindset coming soon"
-      >
-        Enter the Mists
-      </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="active-link" href="index.html">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#ordo">Ordo</a>
+      <a href="#music">Music</a>
+      <a class="mist-link" href="#vanguard">Vanguard Knights</a>
     </nav>
   </header>
 
   <main>
 
-    <!-- Hero -->
-    <section
-      id="home"
-      class="hero section-shell reveal"
-    >
+    <!-- HERO -->
+    <section id="home" class="hero-home section-shell reveal">
+
       <div class="hero-copy">
-        <p class="eyebrow">
-          QKommand
-        </p>
+        <p class="eyebrow">QKommand // Personal Archive</p>
 
         <h1>
-          Stories from Tyria.<br />
-          Music from New Kaineng.<br />
-          <span>Adventures beyond the Mists.</span>
+          Projects.<br />
+          Stories. Music.<br />
+          <span>Ideas.</span>
         </h1>
 
         <p class="hero-text">
-          This is where Commander Q’s journey comes together.
-          Settle in, explore the stories, and find new music from
-          the clubs of New Kaineng City.
+          A personal archive for the things I build, the ideas I write,
+          the music I collect and remix, and the stories I tell from
+          Tyria and beyond.
         </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#archive">
+            Begin Exploring
+          </a>
+
+          <a class="button button-secondary" href="#vanguard">
+            Enter the Chronicles
+          </a>
+        </div>
       </div>
+
+      <div class="hero-portrait-wrap">
+
+        <img
+          class="hero-portrait"
+          src="images/headshot.jpg"
+          alt="Portrait of Commander Q"
+        />
+
+        <div class="portrait-caption">
+          <strong>Commander Q</strong>
+          <span>Builder · Writer · Music Curator · Guild Officer</span>
+        </div>
+
+      </div>
+
     </section>
 
-    <!-- Main destinations -->
+
+    <!-- ARCHIVE INTRO -->
+    <section id="archive" class="archive-intro section-shell reveal">
+
+      <p class="eyebrow">Choose a Path</p>
+
+      <h2>The Archive</h2>
+
+      <p>
+        Four parts of the same world. Practical projects, personal philosophy,
+        music, and an original corner of Guild Wars storytelling.
+      </p>
+
+    </section>
+
+
+    <!-- MAIN SECTIONS -->
     <section
-      class="destination-section section-shell reveal"
-      aria-label="Explore Commander Q"
+      class="destination-section archive-grid section-shell reveal"
+      aria-label="Explore the Commander Q archive"
     >
 
-      <!-- Stories -->
+      <!-- PROJECTS -->
       <a
-        id="stories"
-        class="destination-card"
-        href="stories/index.html"
+        id="projects"
+        class="destination-card archive-card projects-card"
+        href="#"
       >
+
         <span class="destination-label">
-          Living Lore
+          Building · Creating · Solving
         </span>
 
-        <h2>
-          Stories from Tyria and Beyond
-        </h2>
+        <h2>Projects</h2>
 
         <p>
-          Follow Commander Q through adventures, strange discoveries,
-          old mysteries, and the people met along the way.
+          Websites, tools, archives, community resources, and experiments
+          built from curiosity and a desire to make useful things.
         </p>
+
+        <ul class="archive-list" aria-label="Project examples">
+          <li>Terminal 77-B</li>
+          <li>Living Lore Library</li>
+          <li>Web Development</li>
+          <li>Community Tools & Resources</li>
+        </ul>
 
         <span class="destination-link">
-          Explore the stories
-          <span aria-hidden="true">→</span>
+          View projects <span aria-hidden="true">→</span>
         </span>
+
       </a>
 
-      <!-- Music -->
-      <div
-        id="music"
-        class="destination-group"
+
+      <!-- ORDO -->
+      <a
+        id="ordo"
+        class="destination-card archive-card ordo-card"
+        href="#"
       >
 
-        <a
-          class="destination-card music-destination"
-          href="https://youtube.com/@commandrq"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span class="destination-label">
-            New Kaineng Music District
-          </span>
+        <span class="destination-label">
+          Mindset · Writing · Literature
+        </span>
 
-          <h2>
-            Find Your Next Favorite Sound
-          </h2>
-
-          <p>
-            Step into the entertainment district for playlists,
-            remixes, club sounds, and music inspired by New Kaineng
-            after dark.
-          </p>
-
-          <span class="destination-link">
-            Enter the music district
-            <span aria-hidden="true">→</span>
-          </span>
-        </a>
-
-        <!-- TikTok -->
-        <a
-          class="tiktok-card"
-          href="https://www.tiktok.com/@qkommand"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Watch Commander Q remix clips and gameplay clips on TikTok"
-        >
-          <span class="tiktok-label">
-            QKommand on TikTok
-          </span>
-
-          <strong>
-            Remix clips and gameplay moments
-          </strong>
-
-          <span class="tiktok-link">
-            Watch on TikTok
-            <span aria-hidden="true">→</span>
-          </span>
-        </a>
-
-      </div>
-    </section>
-
-    <!-- The Mists / Ordo -->
-    <section
-      class="mists section-shell reveal"
-      aria-labelledby="mists-title"
-    >
-      <div class="mists-copy">
-        <p class="eyebrow">
-          Beyond Tyria
-        </p>
-
-        <h2 id="mists-title">
-          Looking for something different?
-        </h2>
+        <h2>Ordo</h2>
 
         <p>
-          Step through the Mists to explore Ordo Mindset, practical
-          guides, original books, and the person behind Commander Q.
+          A quieter room for practical mindset work, field notes, poetry,
+          essays, reflections, and longer pieces about discipline, purpose,
+          adversity, and the human experience.
         </p>
+
+        <ul class="archive-list" aria-label="Ordo categories">
+          <li>Ordo Mindset Field Notes</li>
+          <li>Poetry & Literature</li>
+          <li>Essays & Reflections</li>
+          <li>Long-form Writing</li>
+        </ul>
+
+        <span class="destination-link">
+          Enter the library <span aria-hidden="true">→</span>
+        </span>
+
+      </a>
+
+
+      <!-- MUSIC -->
+      <a
+        id="music"
+        class="destination-card archive-card music-card"
+        href="https://youtube.com/@commandrq"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <span class="destination-label">
+          New Kaineng Music District
+        </span>
+
+        <h2>Music</h2>
+
+        <p>
+          Playlists, remixes, edits, and sounds collected along the journey.
+          This is the neon side of the archive, built for finding something
+          new to put on repeat.
+        </p>
+
+        <ul class="archive-list" aria-label="Music categories">
+          <li>YouTube Playlists</li>
+          <li>Remixes & Edits</li>
+          <li>Favorite Finds</li>
+          <li>TikTok Clips</li>
+        </ul>
+
+        <span class="destination-link">
+          Enter the music district <span aria-hidden="true">→</span>
+        </span>
+
+      </a>
+
+
+      <!-- VANGUARD KNIGHTS -->
+      <a
+        id="vanguard"
+        class="destination-card archive-card vanguard-card"
+        href="stories/index.html"
+      >
+
+        <span class="destination-label">
+          An Original Guild Wars Story
+        </span>
+
+        <h2>The Vanguard Knights</h2>
+
+        <p>
+          An old and secret adventuring guild born from the legacy of the
+          Ebon Vanguard. Through generations, its members have carried one
+          quiet promise: when Tyria is threatened by dangers others overlook,
+          someone will answer.
+        </p>
+
+        <ul class="archive-list" aria-label="Vanguard Knights archive">
+          <li>The Oath</li>
+          <li>Tales from Tyria</li>
+          <li>Characters & Allies</li>
+          <li>Guild Chronicles</li>
+        </ul>
+
+        <span class="destination-link">
+          Read the chronicles <span aria-hidden="true">→</span>
+        </span>
+
+      </a>
+
+    </section>
+
+
+    <!-- VANGUARD FEATURE -->
+    <section
+      class="mists vanguard-feature section-shell reveal"
+      aria-labelledby="vanguard-callout-title"
+    >
+
+      <div class="mists-copy">
+
+        <p class="eyebrow">
+          The Vanguard Knights
+        </p>
+
+        <h2 id="vanguard-callout-title">
+          Some threats never make the history books.
+        </h2>
+
+        <p class="vanguard-quote">
+          “Wherever Tyria calls, someone will answer.”
+        </p>
+
+        <p>
+          Follow an old adventuring guild whose history crosses forgotten
+          battlefields, strange disturbances in the Mists, Bloodstone secrets,
+          and the lives of ordinary people caught between larger events.
+        </p>
+
       </div>
 
-      <!--
-        Ordo Mindset is not live yet.
-        Replace # with the future path, such as:
-        ordo/index.html
-      -->
       <a
         class="button button-mist"
-        href="#"
-        aria-disabled="true"
-        title="Ordo Mindset coming soon"
+        href="stories/index.html"
       >
-        Enter Ordo Mindset
+        Read the Chronicles
       </a>
+
     </section>
 
   </main>
 
-  <!-- Footer -->
+
+  <!-- FOOTER -->
   <footer class="site-footer section-shell">
 
     <div class="footer-intro">
-      <strong>
-        Commander Q
-      </strong>
+
+      <strong>Commander Q</strong>
 
       <p>
-        Stories, music, and adventures from Tyria and beyond.
+        Projects, stories, music, and ideas from Tyria and beyond.
       </p>
 
+      <div class="footer-links" aria-label="Commander Q links">
+
+        <a
+          href="https://youtube.com/@commandrq"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          YouTube
+        </a>
+
+        <a
+          href="https://www.tiktok.com/@qkommand"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          TikTok
+        </a>
+
+        <a href="#projects">
+          Projects
+        </a>
+
+        <a href="#ordo">
+          Ordo
+        </a>
+
+        <a href="#vanguard">
+          Vanguard Knights
+        </a>
+
+      </div>
+
       <p class="site-credit">
-        Written and built by Commander Q of the Vanguard Citizen Services.
+        Written and built by Commander Q.
       </p>
+
     </div>
 
     <p class="fan-disclaimer">
-      This is an independent, fan-created project inspired by
-      Guild Wars 2. Guild Wars 2, ArenaNet, NCSOFT, and all related
-      names, characters, locations, artwork, music, trademarks, and
-      other copyrighted materials belong to their respective owners.
-      This website does not claim ownership of those properties and
-      is not affiliated with, endorsed by, or sponsored by ArenaNet
-      or NCSOFT. All rights to the original Guild Wars 2 material are
-      reserved by their respective copyright holders.
+      This is an independent, fan-created project inspired by Guild Wars 2.
+      Guild Wars 2, ArenaNet, NCSOFT, and all related names, characters,
+      locations, artwork, music, trademarks, and other copyrighted materials
+      belong to their respective owners. This website does not claim ownership
+      of those properties and is not affiliated with, endorsed by, or sponsored
+      by ArenaNet or NCSOFT. All rights to the original Guild Wars 2 material
+      are reserved by their respective copyright holders.
     </p>
 
   </footer>
 
   <script src="script.js"></script>
+
 </body>
 </html>
