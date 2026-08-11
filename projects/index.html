@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090611" />
+
+  <meta
+    name="description"
+    content="Projects created and maintained by Commander Q, including Guild Wars community resources, archives, and personal projects."
+  />
+
+  <title>Projects | Commander Q</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../style.css" />
+
+  <style>
+
+    /* PAGE */
+
+    .projects-page {
+      min-height: 100vh;
+      padding-top: clamp(60px, 8vw, 100px);
+      padding-bottom: 40px;
+    }
+
+
+    /* BACK */
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 54px;
+      color: #ffffff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .back-link:hover {
+      color: var(--gold-bright);
+      transform: translateX(-3px);
+    }
+
+
+    /* INTRO */
+
+    .projects-intro {
+      max-width: 780px;
+      margin-bottom: clamp(50px, 7vw, 80px);
+    }
+
+    .projects-intro h1 {
+      margin: 0 0 22px;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .projects-intro h1 span {
+      color: var(--gold-bright);
+    }
+
+    .projects-intro p {
+      max-width: 680px;
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(1rem, 1.4vw, 1.1rem);
+      line-height: 1.8;
+    }
+
+
+    /* PROJECT LIST */
+
+    .project-list {
+      display: grid;
+      gap: 24px;
+    }
+
+    .project-entry {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 30px;
+      align-items: center;
+      padding: clamp(28px, 4vw, 42px);
+      border: 1px solid rgba(199, 156, 255, 0.2);
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(15, 11, 27, 0.94),
+          rgba(8, 10, 20, 0.94)
+        );
+      transition:
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .project-entry:hover {
+      border-color: rgba(217, 187, 119, 0.42);
+      transform: translateY(-2px);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(20, 14, 32, 0.96),
+          rgba(10, 12, 23, 0.96)
+        );
+    }
+
+    .project-category {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--gold-bright);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .project-entry h2 {
+      margin: 0 0 16px;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      font-weight: 500;
+    }
+
+    .project-entry p {
+      max-width: 760px;
+      margin: 0;
+      color: #ffffff;
+      line-height: 1.75;
+    }
+
+
+    /* PROJECT BUTTON */
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-width: 130px;
+      padding: 12px 18px;
+      color: var(--gold-bright);
+      border: 1px solid rgba(217, 187, 119, 0.4);
+      border-radius: 999px;
+      background: rgba(217, 187, 119, 0.07);
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .project-link:hover {
+      border-color: var(--gold-bright);
+      background: rgba(217, 187, 119, 0.14);
+      transform: translateY(-2px);
+    }
+
+
+    /* MORE PROJECTS */
+
+    .more-projects {
+      margin-top: 28px;
+      padding: 32px;
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      text-align: center;
+    }
+
+    .more-projects p {
+      margin: 0;
+      color: #ffffff;
+      line-height: 1.7;
+    }
+
+    .more-projects strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--gold-bright);
+      font-family: "Cinzel", serif;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+
+    /* FOOTER */
+
+    .site-footer {
+      margin-top: 34px;
+      padding-top: 20px;
+    }
+
+    .footer-intro {
+      text-align: center;
+    }
+
+    .footer-intro p {
+      color: #ffffff;
+    }
+
+
+    /* TABLET */
+
+    @media (max-width: 760px) {
+
+      .projects-page {
+        padding-top: 48px;
+      }
+
+      .back-link {
+        margin-bottom: 42px;
+      }
+
+      .project-entry {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .project-link {
+        width: fit-content;
+      }
+
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 520px) {
+
+      .projects-intro h1 {
+        font-size: clamp(2.8rem, 15vw, 4.5rem);
+      }
+
+      .project-entry {
+        padding: 26px 22px;
+        border-radius: 20px;
+      }
+
+      .project-link {
+        width: 100%;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+
+  <!-- PROJECTS -->
+
+  <main class="projects-page section-shell">
+
+    <a
+      class="back-link"
+      href="../index.html"
+    >
+      <span aria-hidden="true">←</span>
+      Back home
+    </a>
+
+
+    <!-- INTRO -->
+
+    <section class="projects-intro reveal">
+
+      <p class="eyebrow">
+        Things I've Built
+      </p>
+
+      <h1>
+        My <span>Projects.</span>
+      </h1>
+
+      <p>
+        These are projects I've built around things I enjoy,
+        questions I wanted to answer, or information I thought
+        could be easier to explore and understand.
+      </p>
+
+    </section>
+
+
+    <!-- PROJECT LIST -->
+
+    <section
+      class="project-list reveal"
+      aria-label="Commander Q projects"
+    >
+
+
+      <!-- LIVING LORE LIBRARY -->
+
+      <article class="project-entry">
+
+        <div>
+
+          <span class="project-category">
+            Guild Wars Lore
+          </span>
+
+          <h2>
+            Guild Wars Living Lore Library
+          </h2>
+
+          <p>
+            A growing history and lore archive for the Guild Wars universe.
+            I built it as a place to organize the story of Tyria, connect
+            events across Guild Wars and Guild Wars 2, and make the world's
+            long history a little easier to explore.
+          </p>
+
+        </div>
+
+        <a
+          class="project-link"
+          href="https://qkommand.github.io/GWlll/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit Library
+          <span aria-hidden="true">↗</span>
+        </a>
+
+      </article>
+
+
+      <!-- TERMINAL 77-B -->
+
+      <article class="project-entry">
+
+        <div>
+
+          <span class="project-category">
+            Guild Wars 2 Resource
+          </span>
+
+          <h2>
+            Terminal 77-B
+          </h2>
+
+          <p>
+            A Guild Wars 2 resource built to help players find useful
+            information without digging through a dozen different places.
+            It brings together guides, terminology, adventures, archives,
+            and other references for new, returning, and curious players.
+          </p>
+
+        </div>
+
+        <a
+          class="project-link"
+          href="https://qkommand.github.io/Terminal-77-B/index.html#archives"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit Terminal
+          <span aria-hidden="true">↗</span>
+        </a>
+
+      </article>
+
+
+      <!-- MORE PROJECTS -->
+
+      <div class="more-projects">
+
+        <strong>
+          More to come.
+        </strong>
+
+        <p>
+          This page will grow as I build new things and find
+          more ideas worth turning into projects.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer class="site-footer section-shell">
+
+    <div class="footer-intro">
+
+      <p>
+        Just a place for the things I enjoy making.
+      </p>
+
+      <p class="site-credit">
+        Written and built by Commander Q.
+      </p>
+
+    </div>
+
+    <p class="fan-disclaimer">
+      This is an independent, fan-created project inspired by Guild Wars 2.
+      Guild Wars 2, ArenaNet, NCSOFT, and all related names, characters,
+      locations, artwork, music, trademarks, and other copyrighted materials
+      belong to their respective owners. This website does not claim ownership
+      of those properties and is not affiliated with, endorsed by, or sponsored
+      by ArenaNet or NCSOFT. All rights to the original Guild Wars 2 material
+      are reserved by their respective copyright holders.
+    </p>
+
+  </footer>
+
+  <script src="../script.js"></script>
+
+</body>
+</html>
