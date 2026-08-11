@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090611" />
+
+  <meta
+    name="description"
+    content="Ordo is Commander Q's mindset and self-confidence philosophy, with writing on perspective, discipline, confidence, reflection, and personal growth."
+  />
+
+  <title>Ordo | Commander Q</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../style.css" />
+
+  <style>
+
+    /* PAGE */
+
+    .ordo-page {
+      min-height: 100vh;
+      padding-top: clamp(60px, 8vw, 100px);
+      padding-bottom: 40px;
+    }
+
+
+    /* BACK */
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 54px;
+      color: #ffffff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .back-link:hover {
+      color: var(--gold-bright);
+      transform: translateX(-3px);
+    }
+
+
+    /* INTRO */
+
+    .ordo-intro {
+      max-width: 820px;
+      margin-bottom: clamp(50px, 7vw, 80px);
+    }
+
+    .ordo-intro h1 {
+      margin: 0 0 22px;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .ordo-intro h1 span {
+      color: var(--gold-bright);
+    }
+
+    .ordo-intro p {
+      max-width: 720px;
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(1rem, 1.4vw, 1.1rem);
+      line-height: 1.8;
+    }
+
+
+    /* PHILOSOPHY */
+
+    .ordo-philosophy {
+      max-width: 900px;
+      margin-bottom: 34px;
+      padding: clamp(28px, 4vw, 42px);
+      border: 1px solid rgba(217, 187, 119, 0.2);
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(30, 19, 10, 0.72),
+          rgba(12, 8, 17, 0.94)
+        );
+    }
+
+    .ordo-philosophy h2 {
+      margin: 0 0 16px;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      font-weight: 500;
+    }
+
+    .ordo-philosophy p {
+      margin: 0;
+      color: #ffffff;
+      line-height: 1.8;
+    }
+
+
+    /* WRITING */
+
+    .writing-list {
+      display: grid;
+      gap: 24px;
+    }
+
+    .writing-entry {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 30px;
+      align-items: center;
+      padding: clamp(28px, 4vw, 42px);
+      border: 1px solid rgba(199, 156, 255, 0.2);
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(15, 11, 27, 0.94),
+          rgba(12, 8, 17, 0.94)
+        );
+      transition:
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .writing-entry:hover {
+      border-color: rgba(217, 187, 119, 0.42);
+      transform: translateY(-2px);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(22, 14, 32, 0.96),
+          rgba(15, 10, 20, 0.96)
+        );
+    }
+
+    .writing-category {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--gold-bright);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .writing-entry h2 {
+      margin: 0 0 16px;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      font-weight: 500;
+    }
+
+    .writing-entry p {
+      max-width: 760px;
+      margin: 0;
+      color: #ffffff;
+      line-height: 1.75;
+    }
+
+
+    /* BUTTON */
+
+    .writing-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-width: 130px;
+      padding: 12px 18px;
+      color: var(--gold-bright);
+      border: 1px solid rgba(217, 187, 119, 0.4);
+      border-radius: 999px;
+      background: rgba(217, 187, 119, 0.07);
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .writing-link:hover {
+      border-color: var(--gold-bright);
+      background: rgba(217, 187, 119, 0.14);
+      transform: translateY(-2px);
+    }
+
+
+    /* FUTURE */
+
+    .future-writing {
+      margin-top: 28px;
+      padding: 32px;
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      text-align: center;
+    }
+
+    .future-writing strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gold-bright);
+      font-family: "Cinzel", serif;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .future-writing p {
+      max-width: 660px;
+      margin: 0 auto;
+      color: #ffffff;
+      line-height: 1.75;
+    }
+
+
+    /* FOOTER */
+
+    .site-footer {
+      margin-top: 34px;
+      padding-top: 20px;
+    }
+
+    .footer-intro {
+      text-align: center;
+    }
+
+    .footer-intro p {
+      color: #ffffff;
+    }
+
+
+    /* TABLET */
+
+    @media (max-width: 760px) {
+
+      .ordo-page {
+        padding-top: 48px;
+      }
+
+      .back-link {
+        margin-bottom: 42px;
+      }
+
+      .writing-entry {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .writing-link {
+        width: fit-content;
+      }
+
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 520px) {
+
+      .ordo-intro h1 {
+        font-size: clamp(2.8rem, 15vw, 4.5rem);
+      }
+
+      .ordo-philosophy,
+      .writing-entry {
+        padding: 26px 22px;
+        border-radius: 20px;
+      }
+
+      .writing-link {
+        width: 100%;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+
+  <!-- ORDO -->
+
+  <main class="ordo-page section-shell">
+
+    <a
+      class="back-link"
+      href="../index.html"
+    >
+      <span aria-hidden="true">←</span>
+      Back home
+    </a>
+
+
+    <!-- INTRO -->
+
+    <section class="ordo-intro reveal">
+
+      <p class="eyebrow">
+        Mindset · Confidence · Perspective
+      </p>
+
+      <h1>
+        The <span>Ordo Mindset.</span>
+      </h1>
+
+      <p>
+        Ordo is my way of looking at confidence, adversity, discipline,
+        and the stories we tell ourselves when life gets difficult.
+        It's less about having everything figured out and more about
+        learning how to move forward with a clearer head.
+      </p>
+
+    </section>
+
+
+    <!-- PHILOSOPHY -->
+
+    <section class="ordo-philosophy reveal">
+
+      <h2>
+        What Ordo Is About
+      </h2>
+
+      <p>
+        The idea behind Ordo is pretty simple. Your mindset can either
+        help you see the situation in front of you or make it harder to
+        see clearly. The goal isn't fake positivity or pretending bad
+        days don't exist. It's learning how to challenge the thoughts
+        that hold you back, build confidence through action, and keep
+        moving without needing to feel perfect first.
+      </p>
+
+    </section>
+
+
+    <!-- WRITING -->
+
+    <section
+      class="writing-list reveal"
+      aria-label="Ordo writing"
+    >
+
+
+      <!-- 33 TEARS -->
+
+      <article class="writing-entry">
+
+        <div>
+
+          <span class="writing-category">
+            Memoir
+          </span>
+
+          <h2>
+            33 Tears
+          </h2>
+
+          <p>
+            A personal memoir about memory, hardship, loss, growth,
+            and the experiences that helped shape the person behind
+            the Ordo philosophy.
+          </p>
+
+        </div>
+
+        <a
+          class="writing-link"
+          href="https://vcsstore.gumroad.com/l/33tears"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Memoir
+          <span aria-hidden="true">↗</span>
+        </a>
+
+      </article>
+
+
+      <!-- ORDO MINDSET -->
+
+      <article class="writing-entry">
+
+        <div>
+
+          <span class="writing-category">
+            Mindset Guide
+          </span>
+
+          <h2>
+            Ordo Mindset
+          </h2>
+
+          <p>
+            A practical guide to challenging negative thinking,
+            rebuilding self-confidence, and approaching setbacks
+            with a calmer and more grounded perspective.
+          </p>
+
+        </div>
+
+        <a
+          class="writing-link"
+          href="https://vcsstore.gumroad.com/l/ordo-mindset"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Guide
+          <span aria-hidden="true">↗</span>
+        </a>
+
+      </article>
+
+
+      <!-- FUTURE -->
+
+      <div class="future-writing">
+
+        <strong>
+          More writing is on the way.
+        </strong>
+
+        <p>
+          Over time, Ordo will grow with articles, deeper dives,
+          reflections, and other pieces exploring mindset,
+          self-confidence, adversity, and everyday life.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer class="site-footer section-shell">
+
+    <div class="footer-intro">
+
+      <p>
+        Just a place for the things I enjoy making.
+      </p>
+
+      <p class="site-credit">
+        Written and built by Commander Q.
+      </p>
+
+    </div>
+
+  </footer>
+
+  <script src="../script.js"></script>
+
+</body>
+</html>
