@@ -33,8 +33,6 @@
     .archive-list,
     .portrait-caption span,
     .portrait-role,
-    .footer-intro p,
-    .site-credit,
     .support-kicker,
     .support-note {
       color: #ffffff;
@@ -351,15 +349,68 @@
 
     .site-footer {
       margin-top: 0;
-      padding-top: 18px;
-    }
-
-    .footer-intro {
+      padding: 36px 20px 42px;
       text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .footer-intro p {
+    .footer-motto {
+      display: inline-block;
+      margin: 0;
       color: #ffffff;
+      font-family: "Cinzel", serif;
+      font-size: clamp(0.78rem, 1.4vw, 0.95rem);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+
+      background:
+        linear-gradient(
+          110deg,
+          #ffffff 0%,
+          #ffffff 40%,
+          var(--gold-bright) 47%,
+          #f5dea0 50%,
+          var(--gold-bright) 53%,
+          #ffffff 60%,
+          #ffffff 100%
+        );
+
+      background-size: 300% 100%;
+      background-position: 100% 0;
+
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      animation: footer-shimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes footer-shimmer {
+
+      0%,
+      62% {
+        background-position: 100% 0;
+      }
+
+      100% {
+        background-position: -100% 0;
+      }
+
+    }
+
+
+    /* REDUCED MOTION */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .footer-motto {
+        animation: none;
+        background: none;
+        color: #ffffff;
+        -webkit-text-fill-color: #ffffff;
+      }
+
     }
 
 
@@ -418,7 +469,11 @@
       }
 
       .site-footer {
-        padding-top: 14px;
+        padding: 30px 18px 36px;
+      }
+
+      .footer-motto {
+        letter-spacing: 0.14em;
       }
 
     }
@@ -763,29 +818,9 @@
   <!-- FOOTER -->
 
   <footer class="site-footer section-shell">
-
-    <div class="footer-intro">
-
-      <p>
-        Just a place for the things I enjoy making.
-      </p>
-
-      <p class="site-credit">
-        Written and built by Commander Q.
-      </p>
-
-    </div>
-
-    <p class="fan-disclaimer">
-      This is an independent, fan-created project inspired by Guild Wars 2.
-      Guild Wars 2, ArenaNet, NCSOFT, and all related names, characters,
-      locations, artwork, music, trademarks, and other copyrighted materials
-      belong to their respective owners. This website does not claim ownership
-      of those properties and is not affiliated with, endorsed by, or sponsored
-      by ArenaNet or NCSOFT. All rights to the original Guild Wars 2 material
-      are reserved by their respective copyright holders.
+    <p class="footer-motto">
+      Empower. Educate. Elevate.
     </p>
-
   </footer>
 
 
