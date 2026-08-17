@@ -274,6 +274,30 @@
     }
 
 
+    /* COMING SOON */
+
+    .coming-soon {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      color: var(--gold-bright);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .coming-soon::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold-bright);
+      box-shadow: 0 0 10px rgba(217, 187, 119, 0.6);
+    }
+
+
     /* SUPPORT */
 
     .support-section {
@@ -598,10 +622,9 @@
 
       <!-- WRITING -->
 
-      <a
+      <div
         id="writing"
         class="destination-card archive-card writing-card"
-        href="writing/index.html"
       >
 
         <span class="destination-label">
@@ -614,7 +637,7 @@
 
         <p>
           Sometimes I go down a rabbit hole and end up with something
-          worth writing down. This is where those thoughts end up:
+          worth writing down. This is where those thoughts will end up:
           history, culture, games, creativity, and whatever else
           happens to stick.
         </p>
@@ -636,12 +659,11 @@
           </li>
         </ul>
 
-        <span class="destination-link">
-          Read what I've been writing
-          <span aria-hidden="true">→</span>
+        <span class="coming-soon">
+          Coming Soon
         </span>
 
-      </a>
+      </div>
 
 
       <!-- ORDO -->
@@ -693,10 +715,9 @@
 
       <!-- MUSIC -->
 
-      <a
+      <div
         id="music"
         class="destination-card archive-card music-card"
-        href="music/index.html"
       >
 
         <span class="destination-label">
@@ -710,7 +731,7 @@
         <p>
           I DJ, make playlists, mess around with edits,
           and probably spend too much time looking for the right song.
-          This is where I keep the good stuff.
+          This is where I'll keep the good stuff.
         </p>
 
         <ul
@@ -734,20 +755,18 @@
           </li>
         </ul>
 
-        <span class="destination-link">
-          Listen
-          <span aria-hidden="true">→</span>
+        <span class="coming-soon">
+          Coming Soon
         </span>
 
-      </a>
+      </div>
 
 
       <!-- STORIES -->
 
-      <a
+      <div
         id="stories"
         class="destination-card archive-card stories-card"
-        href="stories/index.html"
       >
 
         <span class="destination-label">
@@ -760,7 +779,7 @@
 
         <p>
           Some ideas don't fit into an essay.
-          This is where I let them become stories.
+          This is where I'll let them become stories.
         </p>
 
         <ul
@@ -780,12 +799,11 @@
           </li>
         </ul>
 
-        <span class="destination-link">
-          Read the stories
-          <span aria-hidden="true">→</span>
+        <span class="coming-soon">
+          Coming Soon
         </span>
 
-      </a>
+      </div>
 
 
       <!-- SUPPORT -->
